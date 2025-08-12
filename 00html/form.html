@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>사용자에게 받을 데이터를 전송할 때 form 태그를 사용합니다.</h2>
+    <form action="https://www.google.com">
+        이름: <input type="text" name="name"> <br>
+        비밀번호: <input type="password" name="pw"> <br>
+        이메일: <input type="email" name="email"> <br>
+        가격: <input type="number"> <br>
+        색상: <input type="color"> <br>
+        파일: <input type="file" name="file"> <br>
+        날짜: <input type="datetime-local"><br>
+        
+        <!-- radio 또는 checkbox는 name속성으로 하나의 그룹으로 만들어야 한다.-->
+        <!-- name은 서버에서 식별하는 이름이 된다. -->
+        전공: <input type="radio" name="major"> 경영학과 
+        <input type="radio" name="major">컴퓨터공학과
+        <input type="radio" name="major"> 수학과
+        <input type="radio" name="major"> 영문학과
+
+        <br>
+        취미: <input type="checkbox" name="hobby"> 축구
+        <input type="checkbox" name="hobby"> 운동
+        <input type="checkbox" name="hobby"> 프라모델
+        <br>
+
+        통신사:
+        <select>
+            <option value="broadband">SK텔레콤</option>
+            <option value="broadband">KT</option>
+            <option value="broadband">LG U+</option>
+        </select> 
+        <br>
+        하고싶은 말 <!-- rows와 cols로 크기 설정-->
+        <textarea rows="4" cols="30"></textarea>
+        <br>
+
+        <input type="reset" value="reset">
+        <input type="button" value="내가 버튼이다 하하하하ㅏㅏ하하ㅏ">
+        <br>
+        <!-- 데이터를 서버로 전송하는 버튼, form 태그의 action에 전송-->
+        <input type="submit" value="전송하기">
+    </form>
+</body>
+</html>
