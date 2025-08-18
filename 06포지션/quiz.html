@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{ padding: 0; margin: 0;}
+        body{
+            background-image: url("images/bg.png");
+        }
+        #header{
+            text-align: center;
+        }
+        #header > img{ margin: 17px;}
+        .menu{
+            background-color: black;
+            height: 50px;
+            line-height: 50px;
+        }
+        .menu > ul > li {
+            display: inline-block;
+        }
+        .menu > ul >li > a{
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            width: 70px;
+        }
+        .menu > ul >li > a:hover{
+            background-color: gray;
+        }
+        .box{ background-color: white;}
+        .item{
+            display: inline-block;
+            margin: 30px;
+        }
+
+        .sticky{
+            text-align: center;
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .sticky > ul > li{
+            display: inline-block;
+            padding: 10px 20px;
+        }
+
+        #section{
+            position: relative;
+            width: 700px;
+            margin: 0 auto;
+        }
+        .left{
+            position: absolute;
+            top: 0;
+            left: -220px;
+        }
+        .right{
+            position: absolute;
+            top: 0;
+            right: -220px;
+        }
+        .left > img, .right > img{
+            display: block;
+        }
+
+        .top{
+            width: 55px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 13px;
+            background-color: rgb(192, 31, 31);
+            text-align: center;
+            position: fixed;
+            right: 35px;
+            top: 40px;
+            z-index: 11;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <img src="images/logo.jpg" alt="logo">
+        <div class="menu">
+            <ul>
+                <li><a href="#">메뉴1</a></li>
+                <li><a href="#">메뉴1</a></li>
+                <li><a href="#">메뉴1</a></li>
+                <li><a href="#">메뉴1</a></li>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="item">
+                <img src="images/item01.png">
+                <p>iPhone(디스플레이 or 플롯)</p>
+            </div>
+            <div class="item">
+                <img src="images/item02.png">
+                <p>iPod</p>
+            </div>
+            <div class="item">
+                <img src="images/item03.png">
+                <p>iPad</p>
+            </div>
+            <div class="item">
+                <img src="images/item04.png">
+                <p>iMac</p>
+            </div>
+        </div>
+    </header>
+    <div class="sticky">
+        <ul>
+            <li>아이콘</li>
+            <li>아이콘</li>
+            <li>아이콘</li>
+            <li>여기는 스티키</li>
+        </ul>
+    </div>
+    <section id="section">
+        <img src="images/ipad.jpg">
+        <div class="left">
+            <img src="images/side01.png" alt="side01" style="padding-bottom: 40px;">
+            <img src="images/side02.png" alt="side02">
+            <p>여기는 포지션</p>
+        </div>
+        <div class="right">
+            <img src="images/side03.png" alt="side03" style="padding-bottom: 40px;">
+            <img src="images/side04.png" alt="side04">
+            <p>여기는 포지션</p>            
+        </div>
+    </section>
+    <div class="top"><a href="#">TOP</a></div>
+</body>
+</html>
