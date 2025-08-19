@@ -1,0 +1,102 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+li, ul, ol, dd, dl{ list-style: none;}
+a{ text-decoration: none;}
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+@media(min-width:767px){
+    #wrap{
+        width: 960px;
+        margin: 0 auto;
+    }
+    #wrap .logo{
+        background-image: url('img/bg.png');
+        height: 280px;
+    }
+    #wrap .logo > h3{
+        padding: 20px 0;
+        font-size: 30px;
+        color: yellow;
+    }
+    #wrap .gnb{
+        background-color: #c13333;
+    }
+    #wrap .gnb ul li{
+        display: inline-block;
+    }
+    #wrap .gnb ul li a {
+        display: block;
+        padding: 10px 20px;
+        color: white;
+    }
+    #section{
+        overflow: hidden;
+    }
+    #section > .left{
+        float: left;
+        width: 700px;
+        padding: 20px;
+    }
+    #section > .right{
+        float: right;
+        width: 200px;
+        padding: 10px;
+        background-color: #e3e3e3;
+        height: 500px;
+    }
+
+    #footer{
+        background-color: #333333;
+        text-align: center;
+        columns: #fff;
+        padding: 10px 0;
+    }
+}
+@media(max-width:766px){
+    #wrap{
+        width: 100%;
+    }
+    #wrap .logo {
+        background-image: url("img/bg.png");
+    }
+    #wrap .logo > h3{
+        padding: 20px 0px 50px 20px;
+        font-size: 24px;
+        color: yellow;
+    }
+    #wrap .gnb{
+        background-color: #c13333;
+    }
+    #wrap .gnb > ul > li{
+        text-align: center;
+        border-bottom: 1px solid white;
+        padding: 5px;
+    }
+    #wrap .gnb > ul > li >a{
+        color: white;
+    }
+    #section > .left > h3{
+        margin: 30px 20px 10px;
+        font-size: 15px;
+    }
+    #section > .left > p{
+        padding: 20px 20px;
+        font-size: 15px;
+    }
+    #section > .right > img{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+    #footer{
+        background-color: #333333;
+        text-align: center;
+        color: #fff;
+        padding: 10px 0;
+    }
+}
