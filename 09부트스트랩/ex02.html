@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css 파일 링크 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- js 파일 링크 -->
+    <script src="js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h3>그리드 시스템</h3>
+    <!-- 
+        containter(양쪽여백박스) 또는 container-fluid(전체너비) 클래스 아래에
+        row 클래스를 넣고
+        col-xx-xx 클래스로 크기를 잡는다
+    -->
+
+    <!-- 모바일 환경에서는 2칸, 브라우저 환경에서는 6칸 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2 col-xs-6">박스</div>
+            <div class="col-sm-2 col-xs-6">박스</div>
+            <div class="col-sm-2 col-xs-6">박스</div>
+            <div class="col-sm-2 col-xs-6">박스</div>
+            <div class="col-sm-2 col-xs-6">박스</div>
+            <div class="col-sm-2 col-xs-6">박스</div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 col-xs-6">박스</div>
+            <div class="col-sm-2 col-xs-6">박스</div>
+            <div class="col-sm-2 col-xs-6">박스</div>
+            <div class="col-sm-2 col-xs-6">박스</div>
+            <div class="col-sm-2 col-xs-6">박스</div>
+            <div class="col-sm-2 col-xs-6">박스</div>
+        </div>
+    </div>
+
+    <hr>
+    <!-- 웹환경에서는 4칸, 테블릿 3칸, 모바일 1칸 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+            <div class="col-md-3 col-sm-4 col-xs-12">아이템</div>
+        </div>
+    </div>
+</body>
+</html>

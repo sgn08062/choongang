@@ -1,0 +1,35 @@
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    ul, ol, li, dd{ list-style: none;}
+    img{
+        max-width: 100%; height: auto;
+    }
+
+    /* ===== 상품 디자인 ===== */
+    .prod-content{
+        overflow: hidden;
+    }
+    .prod-content > .left{
+        float: left;
+    }
+    .prod-content > .right{
+        float: right;
+    }
+
+    .prod-hover{
+        overflow: hidden;
+        opacity: 0;
+        margin-top:-30px;
+        transition: all 0.3s ease-in-out;
+    }
+    .prod-hover > li {
+        float: left;
+    }
+    .prod-hover > li >img{
+        width: 50px;
+    }
+    .prod-wrap:hover > .prod-hover{
+        opacity: 1;
+    }

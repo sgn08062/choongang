@@ -59,15 +59,16 @@ img{
 }
 @media(max-width:766px){
     #wrap{
-        width: 100%;
+        min-width: 350px; /* 최소 350px이고 그 이상부터는 가변적*/
     }
     #wrap .logo {
+        height: 200px;
         background-image: url("img/bg.png");
+        font-size: 24px;
+        color: yellow;
     }
     #wrap .logo > h3{
         padding: 20px 0px 50px 20px;
-        font-size: 24px;
-        color: yellow;
     }
     #wrap .gnb{
         background-color: #c13333;
@@ -80,12 +81,14 @@ img{
     #wrap .gnb > ul > li >a{
         color: white;
     }
-    #section > .left > h3{
-        margin: 30px 20px 10px;
-        font-size: 15px;
+    #section > .left > h3 {
+        margin: 15px 0;  
+        padding: 0 20px;   
+        font-size: 18px;
     }
-    #section > .left > p{
-        padding: 20px 20px;
+    #section > .left > p {
+        margin: 10px 0;
+        padding: 10px 15px;
         font-size: 15px;
     }
     #section > .right > img{
