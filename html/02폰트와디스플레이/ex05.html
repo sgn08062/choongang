@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box>div{
+            border: 1px solid #0a0a0a;
+            display: inline; /* 박스를 inline특징으로 바꿈(크기 지정 안됨) */
+        }
+
+        .list span, .list strong{
+            border: 1px solid #777;
+            display: block; /* 인라인 속성을 block 특징으로 바꿈 */
+        }
+
+        .nav > li{
+            list-style: none;
+            border: 1px solid #333;
+            /* inline 특징에는 박스 크기를 조정할 수 없다.
+            대신에 inline-block은 변경할 수 있다*/
+            display: inline-block; 
+            width: 100px;
+            height: 100px;
+        }
+        .msg{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class = "box">
+        <div>박스</div>
+        <div>박스</div>
+        <div>박스</div>
+    </div>
+    
+    <div class="list">
+        <span>박스</span>
+        <span>박스</span>
+        <strong>박스</strong>
+    </div>
+
+    <ul class = "nav">
+        <li>목록</li>
+        <li>목록</li>
+        <li>목록</li>
+    </ul>
+
+    <div class="msg">
+        아이디 비밀번호를 확인하세요!
+    </div>
+</body>
+</html>

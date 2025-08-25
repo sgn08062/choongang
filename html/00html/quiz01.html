@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Emp 정보</h1>
+    <form>
+        <table border="1">
+            <tr>
+                <td>사원번호:</td>
+                <td><input type="text" value="미리값을 가짐"></td>
+            </tr>
+            <tr>
+                <td>이름:</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>성별:</td>
+                <td><input type="radio" name="gender">남자
+                    <input type="radio" name="gender">여자</td>
+            </tr>
+            <tr>
+                <td>직업:</td>
+                <td><input type="text" name="job"></td>
+            </tr>
+            <tr>
+                <td>상사</td>
+                <td>
+                    <select>
+                        <option>7369</option>
+                        <option>7921</option>
+                        <option>1742</option>
+                        <option>2838</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>입사일:</td>
+                <td><input type="date"></td>
+            </tr>
+            <tr>
+                <td>급여:</td>
+                <td><input type="number" value="0"></td>
+            </tr>
+            <tr>
+                <td>커미션:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>부서번호: </td>
+                <td>
+                    <select>
+                        <option>10 ACCOUNTING NEWYORK</option>
+                        <option>20 ACCOUNTING BOSTON</option>
+                        <option>30 ACCOUNTING LONDON</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" name="save" value="저장">
+                    <input type="reset" name="reset" value="리셋">
+                </td>
+            </tr>
+        </table>
+    </form>    
+</body>
+</html>

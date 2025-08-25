@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{ 
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+        .nav { 
+            height: 70px; 
+            text-align: center; 
+            line-height: 70px;
+            background-color: black;
+        }
+        .nav > ul > li{
+            width: 50px;
+            
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        .nav > ul > li:hover{
+            border-bottom: 7px solid #ff009d;
+        }
+        .nav > ul > li > a{
+            color: white;
+        }
+        .slide {
+            width: auto;
+            height: 400px;
+            background-image: url('img/coupang.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .name{
+            width: 1000px;
+            margin: 40px auto;
+        }
+        .name>p{font-weight: bold;}
+        .content{
+            border: 1px solid;
+            width: 1000px;
+            padding: 20px 30px;
+            box-sizing: border-box;
+        }
+        .content>p{
+            font-size: 30px;
+        }
+        .name > p{text-align: center;}
+    </style>
+</head>
+<body>
+    <section>
+        <div class="nav">
+            <ul>
+                <li><a href="#">메뉴</a></li>
+                <li><a href="#">메뉴</a></li>
+                <li><a href="#">메뉴</a></li>
+                <li><a href="#">메뉴</a></li>
+            </ul>
+        </div>
+        <div class="slide"></div>
+        <div class="main">
+            <div class="name">
+                <p>오늘의 발견</p>
+                <div class="content">
+                    <p>이 컨텐츠는 ...패딩을 포함한 너비가 1000px으로 만들어주세요</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
