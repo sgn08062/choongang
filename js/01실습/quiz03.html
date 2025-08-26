@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            1. 사용자에게 키를 실수형으로 입력받는다.
+            2. 나이를 정수형으로 입력받는다.
+            3. 키가 140이상이고, 나이가 8세 이상이면 자이로드롭을 탈 수 있습니다.
+        */
+        let height = parseFloat(prompt("키를 입력해주세요"));
+        let age = parseInt(prompt("나이를 입력해주세요"));
+        if(height>=140 && age >= 8){
+            alert("자이로드롭 레츠고");
+        }else{
+            alert("나가");
+        }
+    </script>
+</body>
+</html>
