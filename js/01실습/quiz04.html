@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            두 수를 입력받아서, 큰 수와 작은 수를 비교해서 큰 수를 출력해주면 된다.
+            만약 같은 수라면 "같은 수입니다"를 출력한다.
+        */
+        let a = parseFloat(prompt("첫 번째 수를 입력하세요"));
+        let b = parseFloat(prompt("두 번째 수를 입력하세요"));
+
+        if(a>b){
+            document.write("첫 번째 수가 더 큼: " + a);
+        }else if(a<b){
+            document.write("두 번째 수가 더 큼: " + b);
+        }else{
+            document.write("똑 같 다");
+        }
+    </script>
+</body>
+</html>
