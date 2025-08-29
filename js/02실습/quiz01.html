@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        1. 사용자에게 먹고 싶은 음식을 입력받습니다.
+        2. 입력받은 음식을 []에 저장합니다.
+        3. 그만을 입력하면, 반복문을 종료하고, 입력받은 배열을 출력해주세요.
+        */
+        let arr = [];
+        while(true){
+            let food = prompt("뭐가 먹고 싶은데");
+            if(food === "그만") break;
+            arr.push(food);
+        }
+        document.write(arr);
+    </script>
+</body>
+</html>

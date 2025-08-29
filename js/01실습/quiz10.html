@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            어떤 수 x를 입력 받아서 x까지의 소수의 합계를 구한다.
+        */
+        let num = parseInt(prompt("아무 수나 입력하시오"));
+
+        //디버깅
+        debugger; //중단점
+        
+        let sum=0;
+        for(let i=2;i<=num;i++){
+            for(let j=2;j<=i;j++){
+                if(i%j===0 && i != j) break;
+                else if(j === i){
+                    sum += i;
+                } 
+            }
+        }
+        document.write(num, "까지의 소수의 합: ", sum);
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 맞추기</title>
+</head>
+<body>
+    <script>
+    /*
+        더하기 문제 맞추기
+        1~100까지 랜덤한 덧셈 문제를 제출합니다
+        사용자는 정답을 입력합니다.
+        0을 입력하면 프로그램이 종료되고, 정답횟수와 오답횟수를 화면에 보여줍니다.
+    */
+        let num1, num2, num3;
+        let success = 0; 
+        let fail = 0;
+        while(true){
+            num1 = parseInt(Math.random()*100) + 1;
+            num2 = parseInt(Math.random()*100) + 1;
+            num3 = parseInt(prompt(`${num1} + ${num2} = ?\n문제를 그만푸시려면 0을 입력하세요`));
+            if(num3 === 0) break;
+            else if(num3 === num1 + num2) success++;
+            else  fail++;
+        }
+        alert(`정답: ${success}\n오답: ${fail}`);
+    </script>
+
+</body>
+</html>
