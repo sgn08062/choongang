@@ -32,3 +32,14 @@ console.log(item3);
 if(arr.includes('a')){ // a가 배열에 있으면 true 반환, 없으면 false 반환
     console.log("a는 존재한다");
 }
+
+// 배열 합치기
+let arr3 = [4, 5, 6];
+let arr4 = [1, 2, 3];
+
+let result = arr3.concat(arr4);
+console.log(result);
+
+// 배열의 정렬 - 오름차순 정렬
+result.sort();
+console.log(result); // 단- 사전순으로 정렬한다.
