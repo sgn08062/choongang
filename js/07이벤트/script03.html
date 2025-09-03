@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>표준 이벤트 방식</h3>
+
+    <button type="button" id="btn-std">표준 이벤트</button>
+
+    <script>
+        let btn = document.getElementById("btn-std");
+        btn.addEventListener("click", handleClick1);
+        btn.addEventListener("click", handleClick2);
+        btn.addEventListener("click", function() {
+            alert("🌐이건 익명함수로 작성한 표준이벤트");
+        })
+        btn.addEventListener("click", () => {
+            alert("🌐이건 화살표 함수로 작성한 표준이벤트");
+        })
+
+        function handleClick1(){
+            alert("🌐 표준 이벤트 1");
+        }
+        function handleClick2(){
+            alert("🌐 표준 이벤트 2");
+        }
+    </script>
+</body>
+</html>

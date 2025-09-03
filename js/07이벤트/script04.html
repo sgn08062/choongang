@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>this 키워드란? - js에서는 사용하는 곳에 따라서 this가 바뀜</h3>
+
+    <button type="button" onclick="hello(this)">엘리먼트에서 this</button>
+    <button type="button" id="btn">이벤트내부에서 this</button>
+    <script>
+        function some(){
+            console.log(this); // 일반함수에서 this는 window객체를 나타낸다.
+            // window는 js의 최고 부모님
+            // window > document > 태그
+        }
+        some();
+
+        function hello(a){
+            console.log(a); // 엘리먼트 내부에서 this 키워드는 엘리먼트가 된다.
+        }
+
+        let btn = document.getElementById("btn")
+        btn.onclick = function(){
+            console.log(this); // 엘리먼트 내부에서 this 키워드는 엘리먼트가 된다.
+        }
+    </script>
+</body>
+</html>

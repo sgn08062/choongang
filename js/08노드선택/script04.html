@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>엘리먼트의 속성 변경하기</h3>
+
+    <div>
+
+        <img src="../img/1.jpg" alt="대표이미지" width="200" class="profile">
+        <select class="sel">
+            <option value="1.jpg">봄</option>
+            <option value="2.jpg">여름</option>
+            <option value="3.jpg">가을</option>
+            <option value="4.jpg">겨울</option>
+        </select>
+
+        <button type="button" id="profile-btn">이미지 변경하기</button>
+    </div>
+
+    <script>
+        let profileBtn = document.getElementById("profile-btn");
+        let img = document.querySelector(".profile");
+        let sel = document.querySelector(".sel");
+
+        profileBtn.onclick = function(){
+            console.log(sel.value);
+            console.log(img.src);
+
+            img.src = '../img/' + sel.value;
+        }
+    </script>
+
+    <hr>
+
+    <h3>이벤트의 종류만 잘 선택하면 된다.</h3>
+    <div>
+        <img src="../img/1.jpg" alt="대표이미지" width="200" class="my-profile">
+        <select class="my-sel">
+            <option value="1.jpg">봄</option>
+            <option value="2.jpg">여름</option>
+            <option value="3.jpg">가을</option>
+            <option value="4.jpg">겨울</option>
+        </select>
+    </div>
+
+    <script>
+        let prof = document.querySelector(".my-profile");
+        let mySel = document.querySelector(".my-sel");
+
+        mySel.addEventListener("change", () => {
+            prof.src = '../img/' + mySel.value;
+        })
+    </script>
+</body>
+</html>
