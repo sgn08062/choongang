@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input{
+            outline: none;
+        }
+        p{margin: 0; padding: 0;}
+    </style>
+</head>
+<body>
+        아이디<input type="text" class="id">
+    <p class="id_alert"></p>
+    비밀번호<input type="password" class="pw">
+    <p class="pw_alert"></p>
+
+    <script>
+        let id = document.querySelector(".id");
+        let idAlert = document.querySelector(".id_alert");
+
+        let pw = document.querySelector(".pw");
+        let pwAlert = document.querySelector(".pw_alert");
+
+        id.addEventListener("input", () => {
+            id.style.border = "3px solid green";
+            if(id.value.length < 4) {
+                idAlert.innerHTML = "아이디는 4글자 이상이거든요?";
+            } else {
+                idAlert.innerHTML = "";
+            }
+        });
+
+        pw.addEventListener("input", () => {
+            pw.style.border = "3px solid red";
+            if(pw.value.length < 9) {
+                pwAlert.innerHTML = "비밀번호는 9글자 이상이거든요?";
+            } else {
+                pwAlert.innerHTML = "";
+            }
+        });
+    </script>
+
+</body>
+</html>

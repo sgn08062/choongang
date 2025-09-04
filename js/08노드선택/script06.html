@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>엘리먼트 클래스 속성 다루기</h3>
+
+    <button type="button" id="btn">클래스 변경하기</button>
+
+    <div class="box" id="targetBox">
+        내용
+    </div>
+
+    <script>
+        let btn = document.getElementById("btn");
+        let box = document.getElementById("targetBox");
+
+        btn.onclick = function() {
+            if(box.className === "box"){
+                box.className = "changebox";
+            }else{
+                box.className = "box"
+            }
+        }
+    </script>
+
+    <hr>
+
+    <style>
+        .content{
+            border: 1px solid #777;
+            height: 100px;
+            width: 100px;
+            transition:  all 0.5s ease-in-out;
+        }
+        .content.active{
+            background-color: yellow;
+            border: 1px solid green;
+            font-size: 20px;
+        }
+    </style>
+
+    <h3>클래스 속성을 추가, 삭제하기</h3>
+    <button type="button" id="add">추가하기</button>
+    <button type="button" id="remove">삭제하기</button>
+    <button type="button" id="toggle">토글하기</button>
+
+    <div class="content" id="content">
+        내용.......
+    </div>
+
+    <script>
+        let add = document.getElementById("add");
+        let remove = document.getElementById("remove");
+        let toggle = document.getElementById("toggle");
+        let content = document.getElementById("content");
+
+        add.addEventListener("click", function(){
+            //add() - 클래스 추가
+            //remove() - 클래스 제거
+            //contains() - 포함되어 있으면 true, 아니면 false
+            //toggle() -toggle처럼 동작함
+
+            content.classList.add("active");
+        });
+
+        remove.addEventListener("click", function(){
+            content.classList.remove("active");
+        });
+
+        toggle.addEventListener("click", function(){
+            content.classList.toggle("active");
+        });
+    </script>
+</body>
+</html>

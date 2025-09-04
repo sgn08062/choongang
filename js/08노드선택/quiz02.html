@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    1. 예약버튼 클릭 시 좌석이 최소한개이상 체크되어 있지 않다면 경고창을 띄우고<br>
+    2. 체크된 값은 예약확인란에 출력한다<br>
+    3. 힌트 - 버튼 클릭시 배열에 값을<br>
+    좌석: 
+    <input type="checkbox" name="seat" value="1">1
+    <input type="checkbox" name="seat" value="2">2
+    <input type="checkbox" name="seat" value="3">3
+    <input type="checkbox" name="seat" value="4">4
+    <input type="checkbox" name="seat" value="5">5
+    <input type="checkbox" name="seat" value="6">6
+    <input type="checkbox" name="seat" value="7">7
+    <input type="checkbox" name="seat" value="8">8
+    <input type="checkbox" name="seat" value="9">9
+
+    <button type="button" id="btn">예약</button> <br>
+    예약번호:<br>
+    <div class="result"></div>
+
+    <script>
+        let btn = document.getElementById("btn");
+        let result = document.querySelector(".result");
+        let seats = document.querySelectorAll("input[name=seat]");
+
+        btn.addEventListener("click", function(){
+            // 1. 체크된 좌석을 지정할 수 있는 [] 생성
+            // 2. 반복문을 이용해서 체크여부를 확인하고, 체크되어 있으면 배열에 추가
+            // 3. 반복문을 다 돌고나와서, 체크가 되어있다면 result태그에 innerHTML
+            result.innerHTML = "";
+            let checkedSeats = [];
+            seats.forEach((seat) => {
+                if(seat.checked){
+                    checkedSeats.push(seat.value);
+                }
+            });
+            if(checkedSeats.length > 0){
+                for(num of checkedSeats){
+                    result.innerHTML += `${num}번 `
+                }
+            }else{
+                alert("좌석을 선택해주세요")
+            }
+        })
+    </script>
+</body>
+</html>

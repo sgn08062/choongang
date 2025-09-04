@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>드롭다운 메뉴 퀴즈 - 정답</title>
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            background-color: #f9f9f9;
+            border: 1px solid black;
+            padding: 10px;
+            min-width: 160px;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        button {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>드롭다운 메뉴 퀴즈 - 정답</h1>
+    
+    <div class="dropdown">
+        <button id="dropdownBtn">메뉴 ▼</button>
+        <div class="dropdown-content" id="dropdownContent">
+            <a href="#">메뉴 1</a><br>
+            <a href="#">메뉴 2</a><br>
+            <a href="#">메뉴 3</a>
+        </div>
+    </div>
+
+    <div style="margin-top: 20px; padding: 15px; background-color: #f0f0f0;">
+        <h3>정답:</h3>
+        <p>드롭다운 버튼에 클릭 이벤트를 추가하여 메뉴를 토글합니다.</p>
+    </div>
+
+    <script>
+        // 드롭다운 버튼에 클릭 이벤트를 추가하여 메뉴를 토글
+        let dropdownBtn = document.querySelector("#dropdownBtn");
+        let dropdownContent = document.querySelector(".dropdown-content");
+        dropdownBtn.addEventListener("click", () => {
+            dropdownContent.classList.toggle("show")
+        })
+    </script>
+</body>
+</html>

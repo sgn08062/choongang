@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>엘리먼트 추가하기</h3>
+
+    <div id="content"></div>
+
+    <button type="button" id="btn1">innerHTML로 추가하기</button>
+    <script>
+        let content = document.getElementById("content");
+        let btn1 = document.getElementById("btn1");
+        
+        btn1.onclick = function(){
+            let str = `
+                <h3>추가됨</h3>
+                <a href = '#'>이동</a>
+                `;
+            content.innerHTML = str;
+        }
+    </script>
+    <hr>
+    <ul id="box">
+    </ul>
+    <button type="button" id="btn2">createElement로 추가하기</button>
+
+    <script>
+        let btn2 = document.getElementById("btn2");
+        let box = document.getElementById("box");
+
+        btn2.onclick = () => {
+            let li = document.createElement("li");
+            let a = document.createElement("a");
+            a.href = "https://www.google.com";
+            a.innerHTML = "구글로 이동하기";
+
+            // li의 자식으로  a태그를 조립함
+            li.appendChild(a);
+            // 그리고 box 클래스인 ul 안에 넣는다
+            box.appendChild(li);
+        }
+    </script>
+
+</body>
+</html>

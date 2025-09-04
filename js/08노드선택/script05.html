@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>엘리먼트의 속성 변경하기</h3>
+
+    <div>
+
+        <img src="../img/1.jpg" alt="대표이미지" width="200" class="profile" style="border: 3px solid #777">
+        <select class="sel">
+            <option value="1.jpg">봄</option>
+            <option value="2.jpg">여름</option>
+            <option value="3.jpg">가을</option>
+            <option value="4.jpg">겨울</option>
+        </select>
+        <input type="color" class="color">
+        <button type="button" id="profile-btn">이미지 변경하기</button>
+    </div>
+
+    <script>
+        let profileBtn = document.getElementById("profile-btn");
+        let sel = document.querySelector(".sel");
+        let img = document.querySelector(".profile");
+        let color = document.querySelector(".color");
+
+        profileBtn.onclick = function(){
+            img.src = '../img/' + sel.value;
+
+            img.style.borderColor = color.value;
+            img.style.border = "3px solid " + color.value;
+        }
+    </script>
+</body>
+</html>
