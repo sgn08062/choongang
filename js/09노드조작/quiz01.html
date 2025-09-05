@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dbclick{
+            color: white;
+            background-color: red;
+            border: 0px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>input은 지우는게 아니라 display를 제어</h2>
+    <hr>
+    <h2>할일 목록 만들기</h2>
+    <div id="in">
+        <input type="text" class="name" placeholder="당신의 이름을 적으세요">
+        <h3 class="hello" style="display: none"></h3>
+        <button type="button" class="nameBtn">확인</button>
+    </div>
+    <div id="todo">
+        <input type="text" class="work" placeholder="당신의 할일을 적으세요">
+        <button type="button" class="todoBtn">확인</button>
+        <ul id="box">
+
+        </ul>
+    </div>
+
+    <script>
+        // 이름 작성
+        let name = document.querySelector(".name");
+        let hello = document.querySelector(".hello");
+        let nameBtn = document.querySelector(".nameBtn");
+
+        nameBtn.addEventListener("click", () => {
+            let n = name.value;
+            hello.innerHTML = n + "님 안녕하세요";
+            hello.style.display = "block"
+            name.style.display = "none";
+            nameBtn.style.display = "none"
+        })
+
+        // ToDo  리스트
+        let todoBtn = document.querySelector(".todoBtn");
+        let box = document.querySelector("#box");
+        let work = document.querySelector(".work");
+
+        todoBtn.addEventListener("click", () => {
+            let li = document.createElement("li");
+            let div = document.createElement("div");
+            let btn = document.createElement("button");
+
+            // 1. 할 일을 적었는지 체크하고
+            if(work.value.length === 0) {
+                alert("할 일을 작성해주세요!!");
+                return;
+            }
+
+            // 2. 각 태그에 이너값, 클래스명을 추가하고 부모상자에 넣기
+            btn.innerHTML = "X떱클릭";
+            btn.className = "dbclick";
+            li.innerHTML = work.value;
+            li.appendChild(btn);
+            box.appendChild(li);
+
+            // 할 일 input에 값은 초기화
+            work.value = "";
+        })
+    </script>
+</body>
+</html>
