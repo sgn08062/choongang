@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box" data-id="aaa123" data-age="20" data-addr="서울시">유저의 정보를 저장</div>
+
+    <div class="item" data-user='{"name": "홍길동", "age": 20}'>유저의 정보를 JSON으로 저장</div>
+
+    <script>
+        let box = document.querySelector(".box");
+
+        // 수정, 추가, 삭제
+        box.dataset.id = "bbb123"; // 수정
+        box.dataset.email = "qwerty@qwerty.com" // 추가 
+        delete box.dataset.age; // 삭제
+
+        let item = document.querySelector(".item");
+        //console.log(item.dataset.user.name); // 틀린 방법
+        let userObj = JSON.parse(item.dataset.user)
+        console.log(userObj.name); // 올바른 방법
+        // 혹은
+        console.log(JSON.parse(item.dataset.user).name);
+    </script>
+</body>
+</html>

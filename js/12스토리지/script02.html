@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="memo">
+    <button type="button" id="add">세션 스토리지 추가</button>
+
+    <ul class="box"></ul>
+
+    <script>
+        let memo = document.getElementById("memo");
+        let add = document.getElementById("add");
+        let box = document.querySelector(".box");
+        let arr = [];
+
+        add.addEventListener("click", function() {
+            
+            if(localStorage.getItem("memo") !== null){
+                console.log(localStorage.getItem("memo"));
+                let str = JSON.parse(localStorage.getItem("memo"));
+                arr = str;
+            }
+            arr.push(memo.value);
+            localStorage.setItem("memo", JSON.stringify(arr));
+            memo.value = "";
+
+            getStorage();
+
+            // 세션스토리지 저장
+            //localStorage.setItem("memo", memo.value);
+            //memo.value = "";
+
+            // 값 얻기
+            //let text = localStorage.getItem("memo");
+            //console.log(text);
+
+            // 값 삭제
+            //localStorage.removeItem("memo");
+            //localStorage.clear();
+        })
+
+        function getStorage(){
+            if(localStorage.getItem("memo") !== null){
+                let arr = JSON.parse(localStorage.getItem("memo"));
+
+                let str = "";
+                arr.forEach((item, index) => {
+                    str += "<li onclick='removeStorage(" + index + ");'>" + item + "</li>";
+                })
+
+                box.innerHTML = str;
+            }
+        }
+
+        function removeStorage(index){
+            arr.splice(index, 1);
+            localStorage.setItem("memo", JSON.stringify(arr));
+            getStorage();
+        }
+
+        (function(){
+            getStorage();
+        })();
+    </script>
+</body>
+</html>
