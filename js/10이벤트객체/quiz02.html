@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        ul li {
+            display: inline-block;
+        }
+		table { border-collapse: collapse; border-spacing : 0;}
+        thead th, tbody td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h2>이벤트 위임 사용하기<h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody class="list">
+            <tr>
+                <td>1</td>
+                <td>첫글</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>222첫글</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>333첫글</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>444첫글</td>
+                <td>hi</td>
+                <td><button type="button">삭제</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script>
+		//TODO: 삭제버튼을 클릭하면, 행을 지우기
+		//1. 이벤트는 공통부모에 걸어서 이벤트를 위임함
+		//2. e.target으로 클릭한 태그 확인
+		//3. parentElement or closest() 로 부모에 접근해서 remove()
+        let list = document.querySelector(".list");
+        list.onclick = (e) => {
+            console.log(e.target);
+            console.log(e.target.parentElement.parentElement);
+            console.log(e.target.closest("tr"));
+
+            e.target.closest("tr").remove();
+        }
+    </script>
+
+
+
+</body>
+</html>

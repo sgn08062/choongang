@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="box">
+        <li class="item">1. 홍길동</li>
+        <li class="item">2. 홍길자</li>
+        <li class="item">3. 철수</li>
+        <li class="item">4. 영희</li>
+        <li class="item">5. 이히</li>
+    </ul>
+    
+    <p class="result">
+
+    </p>
+
+    <script>
+        let result = document.querySelector(".result")
+
+        // 이벤트 위임 - 부모태그에 이벤트를 걸면 자식도 다 걸림!
+        let box = document.querySelector(".box");
+        box.onclick = function(e){
+            // li를 클릭했을 때, 해당 li태그를 가르킬 필요가 있음
+            //console.log(e.target);
+            console.log(e);
+            console.log(e.target); // 이벤트가 실제 동작한 태그
+            console.log(e.currentTarget); // 이벤트가 실제 걸려있는 태그
+            console.log(e.type); // 이벤트 종류
+            
+            // LI에서만 이벤트가 동작되게 함
+            console.dir(e.target);
+            if(e.target.tagName !== "LI") return;
+
+            result.innerHTML = e.target.innerHTML;
+        }
+    </script>
+</body>
+</html>

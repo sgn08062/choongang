@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="box">
+        <li>
+            <span>홍길동</span>
+            <a href="#" class="sel">선택</a>
+            <a href="#" class="del">삭제</a>
+        </li>
+        <li>
+            <span>철수</span>
+            <a href="#" class="sel">선택</a>
+            <a href="#" class="del">삭제</a>
+        </li>
+        <li>
+            <span>영희</span>
+            <a href="#" class="sel">선택</a>
+            <a href="#" class="del">삭제</a>
+        </li>
+        <li>
+            <span>퉁퉁이</span>
+            <a href="#" class="sel">선택</a>
+            <a href="#" class="del">삭제</a>
+        </li>
+    </ul>
+
+    <script>
+        let box = document.querySelector(".box");
+        box.addEventListener("click", (e) => {
+            e.preventDefault(); // a가 가지고 있는 이벤트 중단
+
+            if(e.target.tagName !== "A") return;
+
+            let span = e.target.parentElement.firstElementChild;
+
+            // sel 클래스인 경우는 select 기능
+            // del 클래스인 경우는 delete 기능
+            if(e.target.className === "sel"){
+                // select 기능
+                console.log("select 버튼");
+                span.style.color = "red"
+            }else if(e.target.className === "del"){
+                console.log("delete 버튼");
+                span.style.color = "black"
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="https://www.google.com" name="actionForm">
+        이름: <input type="text" name="name">
+        비밀번호: <input type="password" name="pw">
+        <input type="checkbox" name="check">CSS
+        <input type="checkbox" name="check">HTML
+        <input type="checkbox" name="check">JS
+
+        <input type="submit" value="제출하기" id="btn">
+    </form>
+
+    <script>
+        // 1. 서브밋 버튼을 누를때 한번에 검사
+        let btn = document.getElementById("btn");
+        btn.onclick = function(event){
+            event.preventDefault();
+
+            // 폼객체는 document.폼이름.인풋이름을 통해서 접근이 가능함.
+            //console.log(document.actionForm);
+
+            let form = document.actionForm;
+
+            if(form.name.value.length < 3){
+                alert("갈!!!!!!!!!!!!! 이름은 3글자 이상입니다!!!!!!!!!!!!!!!!!!");
+                form.name.focus();
+                return;
+            }else if(form.pw.value.length < 4){
+                alert("갈!!!!!!!!!!!!! 비밀번호는 4글자 이상입니다!!!!!!!!!!!!!!!!!!!!!!!!!");
+                form.pw.focus();
+                return;
+            }else{
+                let checkbox = form.check;
+                let cnt = 0;
+                for(let i=0; i<checkbox.length; i++){
+                    if(checkbox[i].checked) cnt++; 
+                }
+                if(cnt<2){
+                    alert("갈!!!!!!!!!!!!!!!! 할 줄 아는게 그것밖에 없나!!!!!!!!!!");
+                    return;
+                }
+            }
+
+            form.submit(); // 폼 보내기
+        }
+    </script>
+    
+    
+    
+    <hr>
+
+
+
+    <form action="#" name="numberForm">
+        <input type="text" name="number">
+        <input type="submit" value="제출하기" id="btn2">
+    </form>
+
+
+    <script>
+        let numberValid = false;
+        let number = document.numberForm.number;
+        number.oninput = function(){
+            if(number.value == ''){
+                number.style.border = "3px solid red";
+                numberValid = false;
+            }else if(number.value.length <= 11){
+                number.style.border = "3px solid red";
+                numberValid = false;
+            }else{
+                number.style.border = "3px solid green"
+                numberValid = true;
+            }
+        }
+        
+        // 서브밋 발생시
+        let btn2 = document.getElementById("btn2");
+        btn2.onclick = function(){
+            event.preventDefault();
+
+            if(numberValid){
+                // 서브밋
+                document.numberForm.submit();
+            }
+        }
+    </script>
+</body>
+</html>

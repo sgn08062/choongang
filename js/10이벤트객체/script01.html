@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li class="item">1. 홍길동</li>
+        <li class="item">2. 홍길자</li>
+        <li class="item">3. 철수</li>
+        <li class="item">4. 영희</li>
+        <li class="item">5. 이히</li>
+    </ul>
+    
+    <p class="result">
+
+    </p>
+
+    <script>
+        let result = document.querySelector(".result");
+        // 먼저 li 태그 전부를 얻음
+        let items = document.querySelectorAll(".item");
+        // 반복으로 이벤트를 다 건다 - 원시적인 방법 == 비추
+        for(let i=0; i<items.length; i++){
+            items[i].onclick = function(){
+                result.innerHTML = this.innerHTML;
+            }
+        }
+    </script>
+</body>
+</html>
