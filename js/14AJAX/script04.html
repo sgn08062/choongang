@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .list {
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content:  space-around;
+            flex-wrap: wrap;
+        }
+        .list > .item {
+            flex-basis: 20%;
+            height: 200px;
+            border: 1px solid #777;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" id="next">다음데이터</button>
+    <div class="list">
+        <!-- <div class="item">
+            <p>좌표:</p>
+            <p>주소:</p>
+        </div> -->
+    </div>
+    <script>
+        let key = "7455466e66796f703738787352584f";
+        let pageNum = 1;
+        
+        let next = document.getElementById("next");
+
+        next.addEventListener("click", () => {
+            pageNum++;
+            getAjax();
+        })
+
+        function getAjax(){
+            let end = pageNum * 8; // 8, 16, 24, ...
+            let start = end - 7;   // 1,  9, 17, ...
+
+            fetch(`http://openapi.seoul.go.kr:8088/${key}/json/TbPublicWifiInfo/${start}/${end}/`)
+            .then(response => response.json())
+            .then(data =>{
+                let result = data.TbPublicWifiInfo.row;
+                
+                let str ="";
+                for(let i=0; i<result.length; i++){
+                    let lat = result[i].LAT;
+                    let lnt = result[i].LNT;
+                    let addr = result[i].X_SWIFI_ADRES1 + " " + result[i].X_SWIFI_ADRES2;
+
+                    str +=
+                    `<div class="item">
+                        <p>좌표: ${lat}, ${lnt}</p>
+                        <p>주소: ${addr}</p>
+                    </div>`
+                }
+
+                document.querySelector(".list").innerHTML = str;
+
+                
+            })  
+        }
+        
+        (function(){
+            getAjax();
+        })();
+    </script>
+</body>
+</html>

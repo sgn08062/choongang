@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        fetch("hi.json")
+        .then(response => response.json())
+        .then(data => console.log(data))
+
+        // xml 데이터 받기
+     /* fetch("by.xml")
+        .then(response => response.text())
+        .then(data => {
+            let result = new DOMParser().parseFromString(data, "text/xml");
+            
+            let list = result.querySelectorAll("data");
+
+            list.forEach((item) => {
+                console.log(item.children[0].innerHTML);
+                console.log(item.children[1].innerHTML);
+                console.log(item.children[2].innerHTML);
+            })
+        });
+        */$
+    </script>
+</body>
+</html>
