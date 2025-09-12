@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        defer - 이 스크립특다 화면이 로드 완료된 이후에 동작
+        신형 브라우저는 제공되지만, 구형 브라우저에는 제공되지 않을수도
+        
+        async - 화면을 그리면서, 비동기적으로 자바스크립트 동작
+    -->
+    <script async src="script01.js"></script>
+    <!-- 자바스크립트가 html 태그가 생기기 전에 호출하면
+        실행 순서상 문제 발생 
+    -->
+</head>
+<body>
+    <div id="box">
+        박스
+    </div>
+
+    
+</body>
+</html>
