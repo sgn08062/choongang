@@ -6,6 +6,7 @@
     <title>JSP Start Template Demo</title>
 </head>
 <body>
-    <h1>JSP Start Template Demo</h1>
+    <h1>서블릿을 거치지 않고 바로 실행되는 페이지입니다</h1>
+
 </body>
 </html>
