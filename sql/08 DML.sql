@@ -1,0 +1,52 @@
+-- DML
+-- INSERT(삽입)
+-- 2가지 방법
+DESC DEPARTMENTS;
+
+-- INSERT INTO 테이블명(컬럼명) VALUSE(값)
+-- 컬럼명을 정확히 일치 시키면 컬럼명 생략이 가능함
+INSERT INTO DEPARTMENTS VALUES (280, '개발자', NULL, 1700);
+
+INSERT INTO DEPARTMENTS(DEPARTMENT_ID, DEPARTMENT_NAME, LOCATION_ID) 
+VALUES (290, '디자이너', 1700);
+
+ROLLBACK; -- 모든 DML문은 트랜잭션이 반영됨
+
+-- INSERT도 서브쿼리 문장을 넣을 수 있다
+CREATE TABLE EMPS AS (SELECT * FROM EMPLOYEES WHERE 1=2);
+SELECT * FROM EMPS;
+
+INSERT INTO EMPS(LAST_NAME, EMAIL, HIRE_DATE, JOB_ID)
+(SELECT LAST_NAME, EMAIL, HIRE_DATE, JOB_ID FROM EMPLOYEES WHERE JOB_ID = 'SA_MAN');
+
+INSERT INTO EMPS(LAST_NAME, EMAIL, HIRE_DATE, JOB_ID)
+VALUES ( (SELECT LAST_NAME FROM EMPLOYEES WHERE MANAGER_ID IS NULL),
+        'TEST', SYSDATE, 'TEST');
+        
+--------------------------------------------------------------------------------------------
+-- UPDATE
+SELECT * FROM EMPS;
+UPDATE EMPS SET SALARY = 1000;
+
+UPDATE EMPS SET SALARY = SALARY * 1.1,
+                COMMISSION_PCT = 0.5,
+                MANAGER_ID = 100
+WHERE LAST_NAME = 'Russell';
+-- UPDATE구문도 서브쿼리절이 허용된다.
+UPDATE EMPS
+SET (FIRST_NAME, MANAGER_ID, JOB_ID, DEPARTMENT_ID) = (SELECT FIRST_NAME, MANAGER_ID, JOB_ID, DEPARTMENT_ID FROM EMPLOYEES WHERE EMPLOYEE_ID = 103)
+WHERE LAST_NAME = 'Russell';
+-- WHERE 절에도 서브쿼리 가능
+UPDATE EMPS
+SET SALARY = 0
+WHERE JOB_ID = (SELECT JOB_ID FROM EMPLOYEES WHERE DEPARTMENT);
+
+----------------------------------------------------------------------------------------------------------------
+-- DELETE
+SELECT * FROM EMPS;
+
+DELETE FROM EMPS
+WHERE JOB_ID = 'IT_PROG';
+-- 모든 행이 삭제 되는 것은 아니다. 테이블이 연관관계를 가지고 있다면, 참조무결성 제약에 위배되는 경우에 삭제되지 않는다.
+
+COMMIT;
