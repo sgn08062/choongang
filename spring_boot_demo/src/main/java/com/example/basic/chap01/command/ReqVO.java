@@ -31,7 +31,7 @@ public class ReqVO {
         return inter;
     }
 
-    public String getpw() {
+    public String getPw() {
         return pw;
     }
 
@@ -51,7 +51,7 @@ public class ReqVO {
         this.name = name;
     }
 
-    public void setpw(String pw) {
+    public void setPw(String pw) {
         this.pw = pw;
     }
 

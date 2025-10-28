@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ex05</title>
+</head>
+<body>
+    <th:block th:replace="~{./include/layout :: part1}"></th:block>
+    <h1>헤더 or 푸터 or 공통 영역을 인클루드할 수 있음</h1>
+    <th:block th:replace="~{./include/layout :: part2}"></th:block>
+
+    <hr>
+
+    <th:block th:replace="~{./include/layout02}"></th:block>
+</body>
+</html>
