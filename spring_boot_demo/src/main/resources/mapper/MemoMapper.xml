@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.basic.chap05.MemoMapper">
+    <select id="list" resultType="MemoVO">
+        SELECT * FROM MEMO ORDER BY MNO DESC
+    </select>
+
+    <insert id="memoRegister" parameterType="MemoVO">
+        INSERT INTO MEMO VALUES (MEMO_SEQ.NEXTVAL, #{memo}, #{phone}, #{pw}, #{secret})
+    </insert>
+</mapper>
