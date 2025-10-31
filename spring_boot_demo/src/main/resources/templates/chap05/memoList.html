@@ -20,7 +20,7 @@
 				<td>[[${vo.mno}]]</td>
 
                 <td>
-                    [[${vo.secret == 'n' ? '비밀글입니다' : vo.memo}]]
+                    [[${vo.secret == 'y' ? vo.memo : '비밀글입니다'}]]
                 </td>
 				
 				<td>[[${vo.phone}]]</td>
