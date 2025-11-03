@@ -16,7 +16,7 @@
 						</div>
 					</div>
                     <div class="page_title">게시글 연습 ><span class="page_subtitle">글 상세보기</span></div>
-                    <form name="#####" action="#####" method="post">
+                    <form name="actionForm" action="#####" method="post">
                         <div class="full_collum collum">
                             <ul>
                                 <li class="collum_tit">
@@ -30,22 +30,22 @@
                                                 <tr>
                                                     <th>등록일</th>
                                                     <td>
-                                                        <span>2016-01-01</span>
+                                                        <span>[[${vo.topicRegdate}]]</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>아이디</th>
-                                                    <td>admin</td>
+                                                    <td>[[${vo.topicWriter}]]</td>
                                                 </tr>
 
                                                 <tr>
                                                     <th>제목</th>
-                                                    <td colspan="5">오늘은 해가뜨려나?</td>
+                                                    <td colspan="5">[[${vo.topicName}]]</td>
                                                 </tr>
                                                 <tr>
                                                     <th>내용</th>
                                                     <td colspan="5">
-                                                        <div style="min-height: 300px;">오늘은 비가오려나?
+                                                        <div style="min-height: 300px;">[[${vo.topicContent}]]
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -53,9 +53,9 @@
 
                                             </table>
                                             <div class="btn_area">
-                                                <input type="button" class="save" value="등록하러가기">
-                                            	<input type="button" class="delete" value="전체목록으로">
-                                               
+                                                <input type="button" class="save" id="register"value="등록하러가기">
+                                            	<input type="button" class="delete" id="list" value="전체목록으로">
+
                                             </div>
                                         </li>
 
@@ -72,4 +72,22 @@
         </div>
     </div>
     </th:block>
+
+    <script>
+        let registerBtn = document.getElementById("register");
+        registerBtn.addEventListener("click", () => {
+            event.preventDefault(); // d가 가진 기본이벤트 삭제
+            document.actionForm.action="topicReg";
+            document.actionForm.method="get";
+            document.actionForm.submit();
+        })
+
+        let listBtn = document.getElementById("list");
+        listBtn.addEventListener("click", () =>{
+            event.preventDefault(); // d가 가진 기본이벤트 삭제
+            document.actionForm.action="topicListAll";
+            document.actionForm.method="get";
+            document.actionForm.submit();
+        })
+    </script>
 </html>

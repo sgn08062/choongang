@@ -9,4 +9,32 @@
         INSERT INTO TOPIC(TOPIC_REGDATE, TOPIC_WRITER, TOPIC_NAME, TOPIC_CONTENT)
         VALUES (#{topicRegdate}, #{topicWriter}, #{topicName}, #{topicContent})
     </insert>
+
+    <select id="topicListAll" resultType="TopicVO">
+        SELECT * FROM TOPIC ORDER BY TOPIC_REGDATE DESC;
+    </select>
+
+    <select id="topicListMe" resultType="TopicVO">
+        SELECT * FROM TOPIC
+        WHERE TOPIC_WRITER = #{topicWriter}
+        ORDER BY TOPIC_REGDATE DESC;
+    </select>
+
+    <select id="topicDetail" resultType="TopicVO" parameterType="long">
+        SELECT * FROM TOPIC
+        WHERE TOPIC_ID = #{topicId}
+    </select>
+
+    <update id="topicModify" parameterType="TopicVO">
+        UPDATE TOPIC
+        SET TOPIC_WRITER = #{topicWriter},
+            TOPIC_NAME = #{topicName},
+            TOPIC_CONTENT = #{topicContent}
+        WHERE TOPIC_ID = #{topicId}
+    </update>
+
+    <delete id="topicDelete" parameterType="TopicVO">
+        DELETE FROM TOPIC
+        WHERE TOPIC_ID = #{topicId}
+    </delete>
 </mapper>

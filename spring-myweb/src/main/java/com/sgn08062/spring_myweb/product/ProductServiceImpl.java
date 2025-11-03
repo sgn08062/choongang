@@ -4,6 +4,8 @@ import com.sgn08062.spring_myweb.command.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("ProductService")
 public class ProductServiceImpl implements ProductService{
 
@@ -11,7 +13,25 @@ public class ProductServiceImpl implements ProductService{
     private ProductMapper productMapper;
     @Override
     public int prodRegist(ProductVO productVO) {
-        productMapper.prodRegist(productVO);
-        return 0;
+        return productMapper.prodRegist(productVO);
+    }
+
+    @Override
+    public List<ProductVO> getList(String prodWriter) {
+        return productMapper.getList(prodWriter);
+    }
+
+    @Override
+    public ProductVO getDetail(long prodId) {
+        return productMapper.getDetail(prodId);
+    }
+    @Override
+    public int prodUpdate(ProductVO productVO) {
+        return productMapper.prodUpdate(productVO);
+    }
+
+    @Override
+    public int prodDelete(long prodId) {
+        return productMapper.prodDelete(prodId);
     }
 }

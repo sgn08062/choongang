@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder // 빌더패턴으로 객체생성을 제공해줌
 public class ProductVO {
     private long prodId;
-    private LocalDateTime prodDate;
+    private LocalDateTime prodRegdate;
     private String prodEnddate;
     private String prodCategory;
     private String prodWriter;
