@@ -2,6 +2,8 @@ package com.sgn08062.spring_myweb.controller;
 
 import com.sgn08062.spring_myweb.command.TopicVO;
 import com.sgn08062.spring_myweb.topic.TopicService;
+import com.sgn08062.spring_myweb.util.Criteria;
+import com.sgn08062.spring_myweb.util.PageVO;
 import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,15 +38,24 @@ public class TopicController {
         return "/topic/topicDetail";
     }
     @GetMapping("/topicListAll")
-    public String topicListAll(Model model){
-        model.addAttribute("topicListAll", topicService.topicListAll());
+    public String topicListAll(Criteria cri, Model model){
+        List<TopicVO> list = topicService.topicListAll(cri);
+
+        int total = topicService.getTotal(cri);
+        PageVO pageVO = new PageVO(cri, total);
+
+        model.addAttribute("topicListAll", list);
+        model.addAttribute("pageVO", pageVO);
         return "/topic/topicListAll";
     }
     @GetMapping("/topicListMe")
-    public String topicListMe(Model model){
+    public String topicListMe(Criteria cri, Model model){
         String topicWriter = "decoy";
-        List<TopicVO> topicList = topicService.topicListMe(topicWriter);
+        List<TopicVO> topicList = topicService.topicListMe(topicWriter, cri);
+        int total = topicService.getTotalMe(topicWriter);
+        PageVO pageVO = new PageVO(cri, total);
         model.addAttribute("topicListMe", topicList);
+        model.addAttribute("pageVO", pageVO);
 
         return "/topic/topicListMe";
     }

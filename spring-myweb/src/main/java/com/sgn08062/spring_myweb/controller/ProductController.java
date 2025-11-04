@@ -2,7 +2,8 @@ package com.sgn08062.spring_myweb.controller;
 
 import com.sgn08062.spring_myweb.command.ProductVO;
 import com.sgn08062.spring_myweb.product.ProductService;
-import oracle.jdbc.proxy.annotation.Post;
+import com.sgn08062.spring_myweb.util.Criteria;
+import com.sgn08062.spring_myweb.util.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -32,10 +33,22 @@ public class ProductController {
 
     // 목록화면
     @GetMapping("/productList")
-    public String productList(Model model){
+    /*
+    public String product(@ModelAttribute("cri") Criteria cri, Model model)
+     를 하면 productList.html에서 criteria 대신 cri로 사용할 수 있다.
+     */
+    public String productList(Criteria cri, Model model){
+        System.out.println(cri);
+
         String prodWriter = "decoy"; // 본인의 아이디라고 가정
-        List<ProductVO> list = productService.getList(prodWriter);
+        //List<ProductVO> list = productService.getList(prodWriter);
+        List<ProductVO> list = productService.getList(prodWriter, cri);
+
+        int total = productService.getTotal(prodWriter, cri);
+        PageVO pageVO = new PageVO(cri,total); // 페이지네이션 계산
+
         model.addAttribute("list",list);
+        model.addAttribute("pageVO",pageVO);
 
         return "/product/productList";
     }

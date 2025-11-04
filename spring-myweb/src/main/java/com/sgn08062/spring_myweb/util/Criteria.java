@@ -4,8 +4,18 @@ import lombok.Data;
 
 @Data
 public class Criteria {
+    // 화면에 전달할 값들을 가지고 다닐 클래스
     private int page; // 현재 페이지 번호
     private int amount; // 데이터 개수
+
+    // 검색 키워드
+    private String searchName;
+    private String searchContent;
+    private String searchPrice;
+    private String startDate;
+    private String endDate;
+
+    private String searchWriter;
 
     // 기본생성자
     public Criteria() {
@@ -18,7 +28,7 @@ public class Criteria {
     }
 
     // limit 함수의 offset값 계산하는 getter
-    public int pageStart(){
+    public int getPageStart(){
         return (page - 1) * amount;
     }
 }

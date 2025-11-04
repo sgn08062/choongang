@@ -1,6 +1,7 @@
 package com.sgn08062.spring_myweb.topic;
 
 import com.sgn08062.spring_myweb.command.TopicVO;
+import com.sgn08062.spring_myweb.util.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +22,23 @@ public class TopicServiceImpl implements TopicService{
     }
 
     @Override
-    public List<TopicVO> topicListAll() {
-        return topicMapper.topicListAll();
+    public List<TopicVO> topicListAll(Criteria cri) {
+        return topicMapper.topicListAll(cri);
     }
 
     @Override
-    public List<TopicVO> topicListMe(String topicWriter) {
-        return topicMapper.topicListMe(topicWriter);
+    public int getTotal(Criteria cri) {
+        return topicMapper.getTotal(cri);
+    }
+
+    @Override
+    public int getTotalMe(String topicWriter) {
+        return topicMapper.getTotalMe(topicWriter);
+    }
+
+    @Override
+    public List<TopicVO> topicListMe(String topicWriter, Criteria cri) {
+        return topicMapper.topicListMe(topicWriter, cri);
     }
 
     @Override

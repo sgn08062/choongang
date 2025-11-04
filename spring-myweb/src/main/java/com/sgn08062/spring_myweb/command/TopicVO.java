@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 //@Setter
 //@ToString
 @Data // Getter, Setter, ToString을 한번에
+@Builder
 public class TopicVO {
     private long topicId;
     private LocalDate topicRegdate;

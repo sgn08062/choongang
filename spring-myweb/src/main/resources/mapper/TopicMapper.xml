@@ -10,14 +10,39 @@
         VALUES (#{topicRegdate}, #{topicWriter}, #{topicName}, #{topicContent})
     </insert>
 
-    <select id="topicListAll" resultType="TopicVO">
-        SELECT * FROM TOPIC ORDER BY TOPIC_REGDATE DESC;
+    <select id="topicListAll" resultType="TopicVO" parameterType="Criteria">
+        SELECT * FROM TOPIC
+        <where>
+        <if test="searchName != '' and searchName != null">
+            AND TOPIC_NAME LIKE CONCAT('%', #{searchName}, '%')
+        </if>
+        <if test="searchWriter != '' and searchWriter != null">
+            AND TOPIC_WRITER LIKE CONCAT('%', #{searchWriter}, '%')
+        </if>
+        </where>
+        ORDER BY TOPIC_REGDATE DESC
+        LIMIT #{pageStart}, #{amount};
     </select>
-
+    <select id="getTotal" resultType="int" parameterType="Criteria">
+        SELECT COUNT(*) AS total FROM TOPIC
+        <where>
+        <if test="searchName != '' and searchName != null">
+            AND TOPIC_NAME LIKE CONCAT('%', #{searchName}, '%')
+        </if>
+        <if test="searchWriter != '' and searchWriter != null">
+            AND TOPIC_WRITER LIKE CONCAT('%', #{searchWriter}, '%')
+        </if>
+        </where>
+    </select>
+    <select id="getTotalMe" resultType="int" parameterType="string">
+        SELECT COUNT(*) AS total FROM TOPIC
+        WHERE TOPIC_WRITER = #{topicWriter}
+    </select>
     <select id="topicListMe" resultType="TopicVO">
         SELECT * FROM TOPIC
         WHERE TOPIC_WRITER = #{topicWriter}
-        ORDER BY TOPIC_REGDATE DESC;
+        ORDER BY TOPIC_REGDATE DESC
+        LIMIT #{cri.pageStart}, #{cri.amount};
     </select>
 
     <select id="topicDetail" resultType="TopicVO" parameterType="long">

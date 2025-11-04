@@ -1,14 +1,19 @@
 package com.sgn08062.spring_myweb.product;
 
 import com.sgn08062.spring_myweb.command.ProductVO;
+import com.sgn08062.spring_myweb.util.Criteria;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface ProductMapper {
     int prodRegist(ProductVO productVO);
-    List<ProductVO> getList(String prodWriter); // 조회
+    List<ProductVO> getList(@Param("prodWriter") String prodWriter,
+                            @Param("cri") Criteria cri); // 조회
+    int getTotal(@Param("prodWriter")String prodWriter,
+                 @Param("cri") Criteria cri);
     ProductVO getDetail(long prodId);
     int prodUpdate(ProductVO productVO);
     int prodDelete(long prodId);
