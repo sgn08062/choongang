@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>핼로월드</h3>
+
+    <button type="button" id="getBtn">REST API로 get 요청</button>
+    <button type="button" id="postBtn">REST API로 post 요청</button>
+    <br>
+    <hr>
+    <br>
+    <button type="button" id="getBtnPrac">REST API로 get 요청 Prac</button>
+    <button type="button" id="postBtnPrac">REST API로 post 요청 Prac</button>
+
+    <script>
+        let getBtn = document.getElementById("getBtn");
+        getBtn.addEventListener("click", () => {
+            let name = "홍길동";
+            let age = 20;
+
+            // get 요청
+            fetch("http://127.0.0.1:8181/chap06/getData3/" + name + "/" + age)
+            .then(function(response){
+                return response.text();
+            })
+            .then(function(data){
+                console.log(data);  
+            });
+        })
+        
+        let postBtn = document.getElementById("postBtn");
+        postBtn.addEventListener("click", () =>{
+            fetch("http://localhost:8181/chap06/getJSON", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json", // 필수. post에서는 보낼 데이터의 형식을 명시해야 함
+                },
+                body: JSON.stringify({num:1, name:"홍길동", age:20})
+            })
+            .then(function(response){
+                return response.text();
+            })
+            .then(function(data){
+                console.log(data);
+            })
+        })
+
+        let getBtnPrac = document.getElementById("getBtnPrac");
+        getBtnPrac.addEventListener("click", () => {
+            let name = "김아무개"
+            let num = 4;
+            fetch("http://localhost:8181/chap06/api/v1/getData?num=" + num + "&name=" + name)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                console.log(data);
+            })
+        })
+        
+        let postBtnPrac = document.getElementById("postBtnPrac");
+        postBtnPrac.addEventListener("click", () => {
+            let form = new URLSearchParams();
+            // form 방식
+            form.append("num", "1")
+            form.append("name", "홍길동")
+
+            fetch("http://localhost:8181/chap06/api/v1/getInfo", {
+                method: "POST",
+                headers: {
+                    //"Content-type" : "application.json" json 데이터 유형
+                    "Content-type" : "application/x-www-form-urlencoded" // form 데이터 유형
+                },
+                // json 형식
+                // body: JSON.stringify({num:1, 
+                //                       name:"홍길동"})
+                body:form
+            })
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                console.log(data);
+            })
+        })
+    </script>
+</body>
+</html>
