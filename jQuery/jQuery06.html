@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+        <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>버튼</th>
+            <th>테스트</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>홍길동</td>
+            <td>
+                <button type="button" class="btn">버튼</button>
+            </td>
+            <td>
+                <span><i class="test">테스트1</i></span>
+                <span >테스트2</span>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>이순신</td>
+            <td>
+                <button type="button" class="btn">버튼</button>
+            </td>
+            <td>
+                <span><i class="test">테스트1</i></span>
+                <span >테스트2</span>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+//         제이쿼리의 부모,형제,자식,이웃 태그를 제어하는 함수
+//      1. closest(선택자) - 근접 단일 부모를 지칭
+//      2. children() - 자식 태그를 전부지칭
+//      3. first() - 자식의 첫번째 태그 지칭
+//      4. last() - 자식의 마지막번째 태그 지칭
+//      5. find(선택자) - 특정 자식요소를 지칭
+//      6. prev() - 이전 형제 지칭
+//      7. next() - 다음 형제 지칭
+
+        $(".btn").click((e)=>{
+            // this 또는 e.target
+            //console.log($(e.target).closest("tr")); // 부모 태그중 가장 가까운 tr 태그
+            //console.log($(e.target).closest("tr").children()); // tr의 자식들
+            //console.log($(e.target).closest("tr").children()[3]); // tr의 3번재 자식
+            
+            //console.log($(e.target).closest("tr").children().first()); // tr의 첫번째 자식
+            //console.log($(e.target).closest("tr").children().last()); // tr의 막내 자식
+
+            //console.log($(e.target).closest("tr").next()); // tr의 이전 이웃
+            //console.log($(e.target).closest("tr").prev()); // tr의 다음 다음
+            //console.log($(e.target).closest("tr").siblings()); // tr의 형제들
+
+            console.log($(e.target).closest("tr").find(".test")); // tr의 자식 중에 클래스명이 test인 태그
+            
+        })
+    </script>
+</body>
+</html>

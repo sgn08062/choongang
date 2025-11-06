@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <button type="button" id="btn">버튼</button>
+
+    <input type="text" class="xxx">
+    <input type="text" class="xxx">
+
+    <div class="box">
+
+    </div>
+
+    <script>
+        setTimeout(() => {
+            $(".box").html("<a> 뒤늦게 생성된 a태그 </a>")
+        }, 500)
+
+
+
+        $("#btn").mouseenter(() => {
+            console.log("마우스 진입!!!!!");
+            
+        })
+
+        $(".xxx").change(() => {
+            console.log("1"); // 인풋에서 포커싱이 벗어날때 동작함
+        })
+
+        // 뒤늦게 생성된 a태그에 이벤트를 걸려고 했는데 안걸림
+        // $(".box > a").click(() => {
+        //     alert(111);
+        // })
+
+        // 이벤트 위임을 하면 걸림 -> 부모에 이벤트를 걸어서 자식에 이벤트를 전파
+        $(".box").on("click", "a", function(){
+            alert("이벤트 걸림");
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <img src="#" alt="프로필" class="abc" width="" height="">
+
+    <script>
+        // 클래스가 abc인 태그의 src 속성을 얻음
+        let r1 = $(".abc").attr("src");
+        console.log(r1);
+        
+
+        // 클래스가 abc인 태그의 alt 속성을 변경
+        $(".abc").attr("alt", "변경할 값!!");
+
+        // 속성을 한번에 바꾸고 싶으면 {} 를 전달함
+        $(".abc").attr({
+            src: "이렇게",
+            alt: "저렇게",
+            width: "200",
+            height: "200"
+        });
+    </script>
+</body>
+</html>

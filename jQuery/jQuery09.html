@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    /chap06/getJSON
+
+    <script>
+        $.ajax({
+            type: "post", // 요청타입 - get,, post
+            url: "http://localhost:8181/chap06/getJSON",
+            contentType: "application/json", // 보내는 데이터 타입(필수)
+            data: JSON.stringify({
+                name: "홍길동",
+                age: 40,
+                hobby: "영화보기"
+            }),
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        })
+    </script>
+</body>
+</html>

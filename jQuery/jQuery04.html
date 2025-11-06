@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="item"></div>
+
+    <script>
+        //document.querySelector(".item").innerHTML = "<a heft='#'>얍</a>";
+        $(".item").html("<a href='#'>얍</a>");
+
+        // 값 얻기
+        let r1 = $(".item").html();
+        console.log(r1);
+
+        // text() - 순수한 문자열 형태로 삽입함
+        $(".item").text("<h1>순수한 텍스트</h1>");
+        
+    </script>
+</body>
+</html>

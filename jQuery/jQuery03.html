@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="title">css 변경</div>
+
+    <ul class="box">
+        <li class="item">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+    </ul>
+    <script>
+        //document.querySelector(".title").style.backgroundColor = "yellow"
+        $(".title").css("backgroundColor", "yellow");
+        
+        // css값 얻기
+        let r1 = $(".title").css("backgroundColor");
+        console.log(r1);
+        
+        // 제이쿼리는 태그가 여러개라도 한번에 처리 가능
+        $(".box > .item").css("color","blue");
+
+        // 한번에 변경하려며 {}
+        $(".box > .item").css({
+            display: "inline-block",
+            backgroundColor: "green",
+            fontSize: "100px",
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <input type="text" id="apple" value="사과">
+    <input type="text" id="melon" value="멜론">
+    <input type="hidden" value="바나나">
+
+    <script>
+        let a1 = document.getElementById("apple");
+        console.log(a1); // 엘리먼트
+
+        let a2 = $("#apple");
+        console.log(a2); // 제이쿼리 init 객체 반환
+        
+        let a3 = $("#apple")[0];
+        console.log(a3); // 엘리먼트 반환
+        
+
+        console.log("----------------------------------------------------");
+        // value 값 얻음
+        let val1 = $("#apple").val();
+        console.log(val1);
+
+        $("#apple").val("청사과");
+        let val2 = $("#apple").val();
+        
+        console.log(val2);
+
+        // 객체를 저장해서 값 변경
+        let apple = $("#apple");
+        console.log(apple.val());
+        
+        apple.val("독사과");
+        console.log(apple.val());
+        
+        console.log("------------------------------------------");
+        
+        console.log($("input[type=hidden]").val());
+        $("input[type=hidden]").val("변경할 값!");
+        console.log($("input[type=hidden]").val());
+        
+        
+    </script>
+</body>
+</html>
