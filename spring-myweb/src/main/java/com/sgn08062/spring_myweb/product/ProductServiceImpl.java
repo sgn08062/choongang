@@ -1,5 +1,6 @@
 package com.sgn08062.spring_myweb.product;
 
+import com.sgn08062.spring_myweb.command.CategoryVO;
 import com.sgn08062.spring_myweb.command.ProductVO;
 import com.sgn08062.spring_myweb.util.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,15 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public int getTotal(String prodWriter, Criteria cri) {
         return productMapper.getTotal(prodWriter, cri);
+    }
+
+    @Override
+    public List<CategoryVO> getCategory() {
+        return productMapper.getCategory();
+    }
+
+    @Override
+    public List<CategoryVO> getCategoryChild(CategoryVO categoryVO) {
+        return productMapper.getCategoryChild(categoryVO);
     }
 }

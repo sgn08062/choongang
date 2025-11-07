@@ -1,5 +1,6 @@
 package com.sgn08062.spring_myweb.product;
 
+import com.sgn08062.spring_myweb.command.CategoryVO;
 import com.sgn08062.spring_myweb.command.ProductVO;
 import com.sgn08062.spring_myweb.util.Criteria;
 import org.apache.ibatis.annotations.Param;
@@ -14,4 +15,7 @@ public interface ProductService {
     ProductVO getDetail(long prodId);
     int prodUpdate(ProductVO productVO);
     int prodDelete(long prodId);
+
+    List<CategoryVO> getCategory(); // 1단 카테고리
+    List<CategoryVO> getCategoryChild(CategoryVO categoryVO); // 2단 카테고리
 }
