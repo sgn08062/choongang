@@ -24,4 +24,8 @@ public class ProductVO {
     private String prodPurchaseYn;
     private String prodContent;
     private String prodComment;
+
+
+    // 조인된 칼럼 결과 - 단순히 가져갈 칼럼이 1개
+    private String categoryNav;
 }
