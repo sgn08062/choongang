@@ -59,7 +59,7 @@ public class ProductServiceImpl implements ProductService{
             // 동일한 이름으로 올라오는 것 처리
             // 윈도우 시스템이 폴더하나에 저장할 수 있는 파일의 개수가 65536개
             String originalFileName = file.getOriginalFilename(); // 파일의 이름
-            String fileName = originalFileName = originalFileName.substring(originalFileName.lastIndexOf("\\") + 1);
+            String fileName = originalFileName.substring(originalFileName.lastIndexOf("\\") + 1);
 
             String uuid = UUID.randomUUID().toString(); // 랜더문자연결값
             String dirPath = makeFolder(); // 폴더경로
@@ -98,6 +98,12 @@ public class ProductServiceImpl implements ProductService{
     public ProductVO getDetail(long prodId) {
         return productMapper.getDetail(prodId);
     }
+
+    @Override
+    public List<ProductUploadVO> getDetailFile(long prodId) {
+        return productMapper.getDetailFile(prodId);
+    }
+
     @Override
     public int prodUpdate(ProductVO productVO) {
         return productMapper.prodUpdate(productVO);

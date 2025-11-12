@@ -86,6 +86,10 @@
         SELECT * FROM PRODUCT WHERE PROD_ID = #{prodId}
     </select>
 
+    <select id="getDetailFile" resultType="ProductUploadVO">
+        SELECT * FROM PRODUCT_UPLOAD WHERE PROD_ID = #{prodId}
+    </select>
+
     <update id="prodUpdate" parameterType="ProductVO">
         UPDATE PRODUCT
         SET PROD_ENDDATE = #{prodEnddate},

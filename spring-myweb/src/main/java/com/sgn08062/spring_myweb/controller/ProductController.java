@@ -1,5 +1,6 @@
 package com.sgn08062.spring_myweb.controller;
 
+import com.sgn08062.spring_myweb.command.ProductUploadVO;
 import com.sgn08062.spring_myweb.command.ProductVO;
 import com.sgn08062.spring_myweb.product.ProductService;
 import com.sgn08062.spring_myweb.util.Criteria;
@@ -26,7 +27,11 @@ public class ProductController {
     public String productDetail(@RequestParam("prodId") long prodId, Model model) {
         System.out.println("상품의 아이디: " + prodId);
 
-        model.addAttribute("vo", productService.getDetail(prodId));
+        ProductVO vo = productService.getDetail(prodId);
+        List<ProductUploadVO> fileList = productService.getDetailFile(prodId);
+
+        model.addAttribute("vo", vo);
+        model.addAttribute("fileList", fileList);
         return "/product/productDetail";
     }
 

@@ -16,6 +16,8 @@ public interface ProductMapper {
     int getTotal(@Param("prodWriter")String prodWriter,
                  @Param("cri") Criteria cri);
     ProductVO getDetail(long prodId);
+    List<ProductUploadVO> getDetailFile(long prodId);
+
     int prodUpdate(ProductVO productVO);
     int prodDelete(long prodId);
 

@@ -46,7 +46,7 @@ public class UploadController {
             // 동일한 이름으로 올라오는 것 처리
             // 윈도우 시스템이 폴더하나에 저장할 수 있는 파일의 개수가 65536개
             String originalFileName = file.getOriginalFilename(); // 파일의 이름
-            String filename = originalFileName = originalFileName.substring(originalFileName.lastIndexOf("\\") + 1);
+            String filename = originalFileName.substring(originalFileName.lastIndexOf("\\") + 1);
 
             long fileSize = file.getSize(); // 파일사이즈
             byte[] arr = file.getBytes(); // 파일의 바이트코드
@@ -136,7 +136,7 @@ public class UploadController {
             // 동일한 이름으로 올라오는 것 처리
             // 윈도우 시스템이 폴더하나에 저장할 수 있는 파일의 개수가 65536개
             String originalFileName = file.getOriginalFilename(); // 파일의 이름
-            String filename = originalFileName = originalFileName.substring(originalFileName.lastIndexOf("\\") + 1);
+            String filename = originalFileName.substring(originalFileName.lastIndexOf("\\") + 1);
 
             long fileSize = file.getSize(); // 파일사이즈
             byte[] arr = file.getBytes(); // 파일의 바이트코드
