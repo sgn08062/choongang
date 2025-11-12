@@ -1,9 +1,6 @@
 package com.sgn08062.spring_myweb.product;
 
-import com.sgn08062.spring_myweb.command.CategoryVO;
-import com.sgn08062.spring_myweb.command.DemoMemberVO;
-import com.sgn08062.spring_myweb.command.DemoOrderVO;
-import com.sgn08062.spring_myweb.command.ProductVO;
+import com.sgn08062.spring_myweb.command.*;
 import com.sgn08062.spring_myweb.util.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,6 +10,7 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
     int prodRegist(ProductVO productVO);
+    int fileRegist(ProductUploadVO productUploadVO);
     List<ProductVO> getList(@Param("prodWriter") String prodWriter,
                             @Param("cri") Criteria cri); // 조회
     int getTotal(@Param("prodWriter")String prodWriter,

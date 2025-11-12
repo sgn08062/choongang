@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+    <h2>파일 업로드</h2>
+    <h4>단일 파일 업로드</h4>
+<!--    enctype 반드시 핈수 -->
+    <form action="upload_ok" method="post" enctype="multipart/form-data">
+        파일태그: <input type="file" name="file">
+        <input type="submit" value="업로드">
+    </form>
+
+    <hr>
+    <h4>여러 파일 업로드 1</h4>
+    <form action="upload_ok2" method="post" enctype="multipart/form-data">
+        파일태그: <input type="file" name="file" multiple>
+        <input type="submit" value="업로드">
+    </form>
+
+    <h4>여러 파일 업로드 2</h4>
+    <form action="upload_ok3" method="post" enctype="multipart/form-data">
+        파일태그: <input type="file" name="file">
+        파일태그: <input type="file" name="file">
+        파일태그: <input type="file" name="file">
+        파일태그: <input type="file" name="file">
+        <input type="submit" value="업로드">
+    </form>
+
+    <hr>
+    <h4>비동기 파일 업로드</h4>
+    <input type="file" name="my_file" id="my-file">
+    <button type="button" id="btn">파일 전송</button>
+    <script>
+        let btn = document.getElementById("btn");
+        btn.addEventListener("click", () => {
+            // 파일업로드 비동기
+            // 폼객체 생성, 파일: 멀티파트
+            let myFile = document.getElementById("my-file");
+            let formData = new FormData();
+            formData.append("file", myFile.files[0]); // <-- file data
+
+
+            fetch("upload_ok4", {
+                method: "post",
+                body: formData
+            }).then((response) => {
+                return response.text();
+            }).then((data) => {
+                console.log(data)
+            })
+        })
+    </script>
+</body>
+</html>
