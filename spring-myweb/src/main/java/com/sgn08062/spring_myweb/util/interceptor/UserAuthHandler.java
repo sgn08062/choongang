@@ -1,7 +1,9 @@
 package com.sgn08062.spring_myweb.util.interceptor;
 
+import com.sgn08062.spring_myweb.command.UserVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,7 +13,15 @@ public class UserAuthHandler implements HandlerInterceptor {
     // 컨트롤러 요청 직전에 요청을 필터링
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("컨트롤러 이전에 동작");
+        //System.out.println("컨트롤러 이전에 동작");
+        HttpSession session = request.getSession(); // 현제 세션을 반환
+        UserVO vo = (UserVO) session.getAttribute("userVO"); // 로그인 했을 때 저장된 세션값
+
+        if(vo==null){
+            // 로그인 안된 사람
+            response.sendRedirect("/user/login");
+            return false;
+        }
 
         return true; // true 입력시 컨트롤러로 넘어감, false 입력시 컨트롤러 실행 x
     }

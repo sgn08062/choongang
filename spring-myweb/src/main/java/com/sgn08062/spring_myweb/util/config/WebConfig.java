@@ -24,5 +24,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/user/login") // user/login 경로는 제외
                 .excludePathPatterns("/user/logout") // 제외
                 .excludePathPatterns("/user/join"); // 제외
+
+        // registry.addInterceptor( ... ) // 하나 더 추가하고 싶으면
     }
 }

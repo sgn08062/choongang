@@ -4,7 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'com.sgn08062'
+group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 description = 'Demo project for Spring Boot'
 
@@ -25,26 +25,26 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    // mysql connector
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
-    // https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc10
-    implementation 'com.oracle.database.jdbc:ojdbc11:23.7.0.25.01' //오라클 커넥터
     // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
-    // log
-    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+    //시큐리티 버전은 스프링버전에 따라 사용방법이 완전히 다릅니다.
+    //시큐리티 5버전 => 스프링 부트 2버전 (수업)
+    //시큐리티 6버전 => 스프링 부트 3버전 (문법이 완전 변경되니 주의)
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    //시큐리티 타임리프에서 사용
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    //시큐리티 테스트
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {

@@ -22,3 +22,6 @@ CREATE TABLE PRODUCT_UPLOAD (
 	PROD_ID INT, ##FK
 	PROD_WRITER VARCHAR(20) ##FK
 );
+
+
+select * from product_upload;
