@@ -1,8 +1,9 @@
 package com.example.demo.security.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,7 +11,11 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true) //어노테이션으로 권한설정을 활성화 합니다.
 public class SecurityConfig {
+
+    @Autowired
+    private MyUserDetailService myUserDetailService;
 
     // 스프링시큐리티 암호화객체
     @Bean
@@ -53,10 +58,42 @@ public class SecurityConfig {
         // 시큐리티가 제공하는 기본 폼 로그인 기능을 쓸 수 있다.
         // http.formLogin(Customizer.withDefaults());
 
-        http.formLogin(form -> form.loginPage("/login")
+        http.formLogin(form -> form
+                .loginPage("/login")  //사용자가 제공하는 폼기반 로그인 기능을 사용
                 .loginProcessingUrl("/loginForm") // 클라이언트에서 보내는 로그인 요청 지정
+                //.failureUrl("/login?error=true") // 로그인 실패 시 url
+                .failureHandler(customAuthenticationFail())
                 .defaultSuccessUrl("/hello") // 로그인 성공시 이동될 URL
         );
+
+        // 권한없음 페이지에 대한 처리
+        http.exceptionHandling(ex ->
+                ex.accessDeniedHandler(customAccessDenyHandler())
+        );
+
+        // 로그아웃 처리
+        http.logout(logout -> logout
+                .logoutUrl("/logout") // 로그아웃 처리할 url
+                .logoutSuccessUrl("/login")  // 로그아웃 이후에 보여질 페이지
+        );
+
+        // 리멤버 미
+        http.rememberMe(remember -> remember
+                .key("decoy") // 쿠키를 생성할 때 사용하게 되는 비밀키
+                .rememberMeParameter("remember-me") // 화면에서 넘어오는 name값
+                .tokenValiditySeconds(3600) // 쿠키의 수명
+                .userDetailsService(myUserDetailService) // 리멤버미 성공하면 실행시킬 클래스
+        );
         return http.build();
+    }
+
+    @Bean
+    public CustomAuthenticationFailure customAuthenticationFail(){
+        return new CustomAuthenticationFailure("/login"); // 로그인 실패시 처리
+    }
+
+    @Bean
+    public CustomAccessDenyHandler customAccessDenyHandler(){
+        return new CustomAccessDenyHandler("/hello"); // 권한이 없을때 처리
     }
 }

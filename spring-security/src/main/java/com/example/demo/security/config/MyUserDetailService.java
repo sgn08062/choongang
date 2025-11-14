@@ -23,12 +23,15 @@ public class MyUserDetailService implements UserDetailsService {
         System.out.println("이거 실행됨 " + username);
 
         // 로그인 시도 코드를 작성
+        // id가 없는 아이디면 null 반환
+        // 있는 id는 userVO 반환
         UserVO vo = userMapper.login(username);
 
         if(vo==null){
             throw new UsernameNotFoundException("사용자를 찾을 수 없습니다");
         }
 
-        return null; // 아이디가 있으면, 약속된 형태의 객체를 반환해주어야 함
+        return new MyUserDetails(vo); // 아이디가 있으면, 약속된 형태의 객체를 반환해주어야 함
+        // 여기서 반환되는 리턴은 시큐리티 세션에 ( new Authentication( new MyUserDetails() ) ) 형식으로 저장 시킨다.
     }
 }

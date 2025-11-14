@@ -34,6 +34,12 @@ public class MyUserDetails implements UserDetails {
         return list;
     }
 
+    // 여기에 필요한 getter 메서드를 더 만들 수 있다.
+
+    public String getRole(){
+        return userVO.getRole();
+    }
+
     @Override
     public String getPassword() {
         return userVO.getPassword();
@@ -42,5 +48,25 @@ public class MyUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return userVO.getUsername();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true; // 계정을 사용할 수 있습니까? (true = 네)
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true; // 비밀번호가 만료되지 않았습니까? (true = 네)
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true; // 계정이 잠기지 않았습니까? (true = 네)
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true; // 계정이 만료되지 않았습니까? (true = 네)
     }
 }
