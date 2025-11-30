@@ -25,7 +25,7 @@ public class Memo {
 
 
     // 매니 투 원 - N:1 조인
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id") // FK로 member_id로 추가함.
     private Member member;
 }
