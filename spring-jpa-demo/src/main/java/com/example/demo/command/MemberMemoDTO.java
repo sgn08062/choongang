@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,10 +13,11 @@ import java.time.LocalDateTime;
 @ToString
 public class MemberMemoDTO {
     // 조인할 결과를 저장할 DTO
-    private String memberId;
+    // 멤버필드
+    private String id;
     private String name;
     private LocalDateTime signDate;
-    private Long memoId;
+    // 메모필드
     private String writer;
     private String text;
 }

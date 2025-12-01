@@ -1,8 +1,11 @@
 package com.example.demo.repository;
 
-import com.example.demo.dto.MemberMemoDTO;
+import com.example.demo.command.MemberMemoDTO;
 import com.example.demo.entity.Member;
 import com.example.demo.entity.Memo;
+import com.example.demo.entity.QMemo;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
@@ -16,6 +19,13 @@ public class MemoCustomRepositoryImpl implements MemoCustomRepository {
     // 엔티티 매니저 - 영속성 영역에 접근 가능한 객체
     @PersistenceContext
     private EntityManager em;
+
+    // 쿼리 dsl
+    private JPAQueryFactory jpaQueryFactory;
+
+    public MemoCustomRepositoryImpl(EntityManager em){
+        this.jpaQueryFactory = new JPAQueryFactory(em);
+    }
 
     @Override
     @Transactional // insert, delete에서 꼭 적어야 함
@@ -91,17 +101,80 @@ public class MemoCustomRepositoryImpl implements MemoCustomRepository {
         return m;
     }
 
-    @Override
-    public List<MemberMemoDTO> otmJoin2(String id) {
-        TypedQuery<MemberMemoDTO> result = em.createQuery(
-                // select 순서를 생성자 순서에 반드시 맞춰야 한다.
-                "SELECT new com.example.demo.dto.MemberMemoDTO(m.id, m.name, m.signDate, x.id, x.writer, x.text) "
-                        // m.id와 x.id는 각각 Member 엔티티와 Memo엔티티의 id이다. DTO의 memberId, memoId가 아니다.
-                + "FROM Member m JOIN m.list x WHERE m.id = :id"
-                ,MemberMemoDTO.class
-        );
+    //원투매니 fetch
+    //1:N조인에서 fetch 사용시 행 중복현상이 발생할 수 있음
+    //distinct키워드를 붙여서 중복행 제거
 
-        result.setParameter("id", id);
-        return result.getResultList();
+    @Override
+    public List<Member> otmJoin2(String id) {
+        String sql = "select distinct m from Member m join fetch m.list x where m.id = :id";
+        TypedQuery<Member> query = em.createQuery(sql, Member.class);
+        query.setParameter("id", id);
+        return query.getResultList(); //여러행
+    }
+    //DTO로 처리하기
+    //반환받을 값이 여러행이라면 List<MemberMemoDTO>
+
+    @Override
+    public MemberMemoDTO otmJoin3(String id) {
+        //select절에는 MemberMemoDTO(생성자에 전달될값)
+        String sql = "select new com.example.demo.command.MemberMemoDTO(m.id, m.name, m.signDate, x.writer, x.text)" +
+                " from Member m join m.list x where m.id = :id";
+
+        TypedQuery<MemberMemoDTO> query = em.createQuery(sql, MemberMemoDTO.class);
+        query.setParameter("id", id);
+        return query.getSingleResult(); //한행
+    }
+
+    @Override
+    //쿼리DSL 기본문법
+    public Memo dslSelect() {
+
+        QMemo memo = QMemo.memo; //쿼리DSL을 자바sql문을 쓰기위한 클래스
+        Memo m = jpaQueryFactory.select(memo) //select memo
+                .from(memo) //from memo
+                .where( memo.id.eq(10L) ) // where m.id = 10
+                .fetchOne(); //1행조회
+        return m;
+    }
+
+    @Override
+    public List<Memo> dslSelect2() {
+
+        QMemo memo = QMemo.memo;
+        List<Memo> list = jpaQueryFactory.select(memo)
+                .from(memo)
+                //.where( memo.text.like("%2%") )
+                //.where( memo.id.gt(10).and( memo.id.lt(20) )) // where id > 10 and id < 20
+                .where ( memo.id.goe(10).or( memo.id.loe(20) )) //where id >= 10 or id <= 20
+                .orderBy( memo.id.desc() )
+                .fetch(); //여러행 조회
+
+        //fetch() 여러행 조회, fetchOne() 단일행 execute() 인서트 업데이트 딜리트
+
+        return list;
+    }
+
+    @Override
+    public List<Memo> dslSelect3(String searchType, String searchName) {
+
+        QMemo memo = QMemo.memo;
+        //조건절을 불린빌더에 조합할 수 있습니다.
+        BooleanBuilder builder = new BooleanBuilder();
+        //검색의 조건이 writer면 writer like
+        if(searchType != null && searchType.equals("writer") ) {
+            builder.and( memo.writer.like( "%" + searchName + "%" ) );
+        }
+        //검색의 조건이 text면 text like
+        if(searchType != null && searchType.equals("text") ) {
+            builder.and( memo.text.like( "%" + searchName + "%" ) );
+        }
+        //...생략....
+        List<Memo> list = jpaQueryFactory.select(memo)
+                .from(memo)
+                .where( builder )
+                .fetch();
+
+        return list;
     }
 }

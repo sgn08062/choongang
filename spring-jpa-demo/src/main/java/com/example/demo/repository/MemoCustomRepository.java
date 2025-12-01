@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.dto.MemberMemoDTO;
+import com.example.demo.command.MemberMemoDTO;
 import com.example.demo.entity.Member;
 import com.example.demo.entity.Memo;
 
@@ -16,6 +16,11 @@ public interface MemoCustomRepository {
     List<Memo> mtoJoin4();
 
     Member otmJoin1(String id);
+    List<Member> otmJoin2(String id); // 원투매니 fetch
+    MemberMemoDTO otmJoin3(String id); // 조인결과를 DTO로 받기
 
-    List<MemberMemoDTO> otmJoin2(String id);
+    // 쿼리 DSL
+    Memo dslSelect();
+    List<Memo> dslSelect2(); // 여러 행 조회
+    List<Memo> dslSelect3(String searchType ,String searchName); // 불린빌더 동적쿼리
 }

@@ -1,15 +1,12 @@
 package com.example.demo.jpa;
 
-import com.example.demo.dto.MemberMemoDTO;
-import com.example.demo.entity.Member;
-import com.example.demo.entity.Memo;
+import com.example.demo.command.MemberMemoDTO;
 import com.example.demo.repository.MemoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest

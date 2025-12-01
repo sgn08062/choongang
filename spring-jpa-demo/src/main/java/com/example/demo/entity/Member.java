@@ -11,28 +11,33 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity // JPA가 이 클래스를 entity로 관리함
-@Table(name="MEMBER") // 테이블명
+@Entity //JPA가 이 클래스를 entity로 관리함
+@Table(name="MEMBER") //테이블명
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@ToString ToString 메서드는 하나 지운다
-@EntityListeners(AuditingEntityListener.class)
+//@ToString - 양방향 맵핑에서 한쪽 toString을 지워야함
+@EntityListeners(AuditingEntityListener.class) //
 public class Member {
-    @Id // Pk 지정
+    //관계 1
+    @Id //pk지정
     private String id;
     @Column(nullable = false, length = 50)
     private String name;
-    @CreatedDate // JPA가 인서트시 날짜를 자동 입력( 프로젝트 시작점에 어노테이션 추가 )
+    @CreatedDate //JPA가 인서트시 날짜를 자동 입력 (오디팅 설정 필요)
     @Column(nullable = false)
     private LocalDateTime signDate;
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY) // 원투매니 기본조인 방식 - LAZY
-    // Memo 엔티티의 멤버변수 member가 연관관계의 주인이다.
-    @JsonIgnore // 이 필드는 json 변환시 무시됨
-    // 양방향 매핑 무한 루프를 방지한다.
-    // 혹은 응답 JSON에 비밀번호가 노출되지 않도록 보호한다.
+    //원투매니 단방향
+//    @OneToMany(fetch = FetchType.EAGER) //원투매니 로딩전략기본 - Lazy
+//    @JoinColumn(name = "member_id") //Memo테이블의 member_id를 FK로 사용하겠음 - 적지 않으면 관계의 주인이 member가 되면서 맵핑테이블을 생성해 버리게 됨
+//    private List<Memo> list = new ArrayList<>();
+
+    //양방향 맵핑
+    //toString은 한쪽에만 사용함
+    @JsonIgnore
+    @OneToMany(mappedBy = "member") //연관관계의 주인 (FK를 관리할 필드 - Memo에 존재하는 member필드)
     private List<Memo> list = new ArrayList<>();
 }

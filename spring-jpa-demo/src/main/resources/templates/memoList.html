@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            display: block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+    </style>
+
+</head>
+<body>
+
+<select name="searchType">
+    <option value="mno">번호</option>
+    <option value="text">내용</option>
+    <option value="writer">작성자</option>
+    <option value="textWriter">내용 + 작성자</option>
+</select>
+<input type="text" name="searchName">
+<button type="button" onclick="searchList()">검색</button>
+
+<table>
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>Writer</th>
+        <th>Text</th>
+    </tr>
+    </thead>
+    <tbody id="tableBody">
+    <!-- Rows will be inserted here by JavaScript -->
+    </tbody>
+</table>
+
+<ul class="pagination" id="pagination">
+    <!-- Pagination buttons will be inserted here by JavaScript -->
+    <a href="#" class="prev">이전</a>
+    <a href="#" class="number">1</a>
+    <a href="#" class="number">2</a>
+    <a href="#" class="number">3</a>
+    <a href="#" class="next">다음</a>
+</ul>
+
+
+<script>
+    // 1. JPA의 findAll 함수를 생성하고 memo 엔티티를
+    // 2. 1번을 연결할 수 있는 REST API 생성
+    // 3. fetch를 이용해서 2번의 REST API를 호출한 후에 결과를 JS로 tableBody 화면에 출력
+
+    let page = 1; // 조회하는 페이지
+    let amount = 10; // 데이터 개수
+    let start = 0; // 시작 페이지
+    let end = 0; // 끝 페이지
+
+    let tableBody = document.getElementById("tableBody");
+    let pagination = document.getElementById("pagination");
+
+    function getList() {
+        // 페이지번호, 데이터개수, 검색키워드
+        let searchType = document.querySelector("select[name=searchType]").value;
+        let searchName = document.querySelector("input[name=searchName]").value;
+        let url = "/getList?page=" + page + "&amount=" + amount + "&searchType=" + searchType + "&searchName=" + searchName;
+
+
+        fetch(url)
+            .then( response => response.json() )
+            .then( data => {
+                console.log(data);
+                createBody(data.pageData); // 데이터처리
+                createPage(data); // 페이지네이션처리
+            })
+
+    }
+
+    function createBody(data) {
+
+        let str = "";
+        data.forEach( item => {
+            str += "<tr>";
+            str += "<td>"+ item.id +"</td>";
+            str += "<td>"+ item.writer + "</td>";
+            str += "<td>"+ item.text + "</td>";
+            str += "</tr>";
+        })
+        tableBody.innerHTML = str;
+    }
+
+    function createPage(data){
+        let pageList = data.pageList;
+        let prev = data.prev; // 이전버튼
+        let next = data.next; // 다음버튼
+        start = data.start;
+        end = data.end;
+
+        let str = "";
+        if(prev){
+            str += "<a href='#' class='prev'>이전</a>"
+        }
+
+        pageList.forEach(item => {
+            str += "<a href='#' class='number'>" + item + "</a>"
+        })
+
+        if(next){
+            str += "<a href='#' class='next'>다음</a>"
+        }
+
+        pagination.innerHTML = str;
+
+    }
+
+    pagination.addEventListener("click", (e) => {
+        e.preventDefault(); // a태그의 기본이벤트 중단
+        if(e.target.tagName !== "A") return; //A태그가 아니라면 종료
+
+        if(e.target.className === "prev"){
+            page = start - 1;    // 전역변수( 현재조회하는 페이지 )
+        }else if(e.target.className === "number"){
+            page = e.target.innerHTML;
+        }else if(e.target.className === "next"){
+            page = end + 1;
+        }
+
+        getList();
+    });
+
+    // 검색하는 이벤트
+    function searchList(){
+        page = 1; // 페이지번호 1번
+        amount = 10; // 데이터 개수 10개
+        getList();
+
+    }
+
+    // 즉시 실행함수
+    (() => {
+        getList();
+    })();
+
+
+</script>
+
+</body>
+</html>

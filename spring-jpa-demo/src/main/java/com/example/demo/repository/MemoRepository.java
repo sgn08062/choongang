@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,8 @@ import java.util.List;
 
 // JpaRepository<엔티티, 엔티티의 ID>
 public interface MemoRepository extends JpaRepository<Memo, Long> // 기본 jpa 인터페이스
-                                        , MemoCustomRepository { // 커스텀 리포지토리 사용시
+                                        , MemoCustomRepository // 커스텀 리포지토리 사용시
+                                        , QuerydslPredicateExecutor<Memo> { // 쿼리 dsl
     // 쿼리 메서드 - 메서드 이름을 보고 JPA가 sql을 실행시킴
     List<Memo> findByIdBetween(Long start, Long end);
     List<Memo> findByTextLike(String text);
