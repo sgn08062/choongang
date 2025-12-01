@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 10; // es05
+        var a = 20; // es05
+        
+        let b = 10; // es06
+        //let b = 20; 중복변수 x
+
+        if(true){ // 중괄호 스코프로 변경
+            let c = 10;
+        }
+        //console.log(c); // error
+
+        // const -> 상수 선언
+        const d = 10;
+        //d = 20; // error
+        const e = {name: "Hong"};
+        e.name = "Kim"; // 객체 내부 속성은 변경 가능
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 백틱
+        let name = "홍길동";
+        let age = 20;
+        console.log(name + "님의 나이는 "+ age  + "입니다.");
+        console.log(`${name}님의 나이는 ${age} 입니다.`);
+        console.log(`${name}님은 ${age > 20 ? '성인' : '미성년자'}입니다.`);
+        
+        // for-of문
+        let arr = [{name:"홍", age: 20}, {name: "이", age: 30}, {name: "박", age: 40}];
+        for(let value of arr){ // 값을 뽑아줌
+            console.log(value);
+        }
+        for(let {name, age} of arr){
+            console.log(name, age);
+        }
+    </script>
+</body>
+</html>

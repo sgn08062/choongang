@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 화살표 함수
+        //const func = function(){}
+        const func = () => {}
+
+        // 1. 코드가 한줄이면 {} 생략가능, return 생략
+        const some = (a, b) => a + b;
+        // 2. 매개변수가 한개이면 () 생략가능
+        const some2 = a => a + 10;
+        console.log(some2(50));
+
+        // 3. 객체를 return 할 때는 ()로 묶는다.
+        const some3 = (name, age) => ({name: name, age: age});
+        console.log(some3("홍길동", 20));
+
+        // 화살표함수 예시
+        setInterval(()=>{}, 1000);
+        [1,2,3].forEach(item=> {});
+        
+        
+    </script>
+</body>
+</html>
