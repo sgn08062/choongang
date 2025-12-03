@@ -1,30 +1,22 @@
-import MyState from "./component/MyState";
-import Welcome from "./component/Welcome";
-import WelcomeClass from "./component/WelcomeClass"
-import MyStateQ from "./component/MyStateQ"
-
+import IterationComponent from "./component/IterationComponent";
+import IterationComponent2 from "./component/IterationComponent2";
+import IterationComponentQ from "./component/IterationComponentQ";
+import IterationComponentQ2 from "./component/IterationComponentQ2";
 function App() {
 
   return (
     <div>
-      <h2>Props 확인하기</h2>
-      <b>상위 컴포넌트에서 하위 컴포넌트로 전달하는 매개변수이다.<br/>
-      하위 컴포넌트에서는 첫번째 매개변수로 props를 받을 수 있다.<br/>
-      하위 컴포넌트에서 사용할 때는 중괄호를 이용해서 받을 수 있다.</b>
-      <Welcome name="홍길동" age={20} addr="서울시"/>
-      <br/>
-      <Welcome name="이순신" addr="경기도" age={40}/>
-      <br/>
-      <Welcome />
-
+      <h1>컴포넌트 반복</h1>
+      <IterationComponent/>
       <hr/>
-      <h2>state값 확인하기</h2>
-      <MyState/>
+      <h1>컴포넌트 반복2</h1>
+      <IterationComponent2/>
       <hr/>
-      <h2>실습(MyStateQ)</h2>
-      <MyStateQ/>
+      <h1>실습</h1>
+      <IterationComponentQ/>
       <hr/>
-      <WelcomeClass name={"홍길동"} age={20}/>
+      <h1>실습2</h1>
+      <IterationComponentQ2/>
     </div>
   )
 }
