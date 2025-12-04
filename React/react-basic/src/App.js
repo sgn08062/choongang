@@ -1,23 +1,29 @@
-import IterationComponent from "./component/IterationComponent";
-import IterationComponent2 from "./component/IterationComponent2";
-import IterationComponentQ from "./component/IterationComponentQ";
-import IterationComponentQ2 from "./component/IterationComponentQ2";
-function App() {
+import './css/App.css';
+import styled from './css/App.module.css';
 
-  return (
-    <div>
-      <h1>컴포넌트 반복</h1>
-      <IterationComponent/>
-      <hr/>
-      <h1>컴포넌트 반복2</h1>
-      <IterationComponent2/>
-      <hr/>
-      <h1>실습</h1>
-      <IterationComponentQ/>
-      <hr/>
-      <h1>실습2</h1>
-      <IterationComponentQ2/>
-    </div>
+function App(){
+
+  return(
+    <>
+     <div>
+        <h1 style={{textAlign:"center", color:"red"}}>리액트에서 직접 style 하기</h1>
+        <div className="app_header">
+          내용......
+        </div>
+
+        {/* 모듈 css */}
+        <div className={styled.app_wrap}>
+          <div className={styled.item}>아이템</div>
+          <div className={styled.item}>아이템</div>
+          <div className={styled.item}>아이템</div>
+          <div className={styled.item}>아이템</div>
+        </div>
+
+        {/* 모듈 css의 전역선택자 */}
+        <h3 className='title'>:global의 사용</h3>
+        <h3 className='content'>:global의 사용</h3>
+      </div> 
+    </>
   )
 }
 

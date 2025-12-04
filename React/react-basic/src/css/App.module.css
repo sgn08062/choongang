@@ -1,0 +1,18 @@
+.app_wrap{
+  color: yellow;
+  display: flex;
+  justify-content: center;
+}
+
+.app_wrap .item{
+  border: 1px solid #777;
+  color: yellow;
+}
+
+:global .title{
+  color: green;
+}
+
+:global .content{
+  color: purple;
+}
