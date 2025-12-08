@@ -1,47 +1,39 @@
-import { useState, useEffect } from "react";
-import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "./redux/CountReducer";
+import Child from "./redux/Child";
+import { setName } from "./redux/UserReducer";
 
-function App(){
+function App() {
+  // store에 등록된 리듀서를 가져올때는 useSelector훅
+  // count키는 reducer 안에 정의된 key가 된다
 
-  /*
-    아래 요구사항을 충족하는 코드를 작성하시오.
-    https://raw.githubusercontent.com/yopy0817/data_example/refs/heads/master/data.json
+  // 매개변수 - store에 관리되고 있는 reducer 선택, 반환 - 리듀서 관리되는 값
+  const countValue = useSelector( reducer => {
+    return reducer.count.value;
+  })
 
-    1. 이 페이지가 mount된 이후에 해당 주소로 fetch 요청을 보내 데이터를 받아오세요
-    2. 받아온 데이터는 state에 저장하시오.
-    3. 화면에는 컴포넌트 반복을 통해서 받아온 데이터를 출력하라.
-    4. 이 데이터가 도착하기 전까지는 "데이터 로딩중...."이라는 문구가 보이도록 처리하시오.
-  */
+  const userName = useSelector( reducer => { 
+    return reducer.user.name;
+  })
 
-  const [board, setBoard] = useState(null);
-  useEffect(() => {
-    (async() => {
-      const data = await axios.get("https://raw.githubusercontent.com/yopy0817/data_example/refs/heads/master/data.json");
-      console.log(data.data);
-      setBoard(data.data);
-    })();
-  }, []);
-
+  // 리듀서의 상태를 변경하기 위한 함수 dispatch
+  const dispatch = useDispatch();
 
   return(
     <>
-      <h3>실습 문제</h3>
+      <h1>리덕스 예시</h1>
 
-      <ul>
-        {
-          board !== null ? (
-            board.map((item, index) => (
-              <li key={index}>
-                게시물 제목: {item.title}<br/>
-                게시물 내용: {item.content}<br/>
-                <img src={item.src}/>
-              </li>
-            ))
-          ) : (
-            <li>데이터 로딩중....</li>
-          )
-        }
-      </ul>
+      <h3>결과값: {countValue}</h3>
+      <button type="button" onClick={() => dispatch(increment())}>증가</button>
+      <button type="button" onClick={() => dispatch(decrement())}>감소</button>
+      <hr/>
+
+      <Child/>
+      <hr/>
+
+      <h1>이름 수정 리덕스</h1>
+      <h3>이름: {userName}</h3>
+      <input type="text" onChange={(e) => dispatch(setName(e.target.value))}></input>
     </>
   )
 }

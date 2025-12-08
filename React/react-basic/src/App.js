@@ -1,30 +1,39 @@
-import './css/App.css';
-import styled from './css/App.module.css';
+import HookEffect from "./hook/HookEffect"
+import HookQ from "./hook/HookQ"
+import HookRef from "./hook/HookRef"
+import HookReducer from "./hook/HookReduecer"
+import HookMemo from "./hook/HookMemo"
+import HookCallback from "./hook/HookCallback"
 
 function App(){
-
-  return(
+  return (
     <>
-     <div>
-        <h1 style={{textAlign:"center", color:"red"}}>리액트에서 직접 style 하기</h1>
-        <div className="app_header">
-          내용......
-        </div>
+      <h1>HookEffect</h1>
+      <HookEffect/>
+      <hr/>
 
-        {/* 모듈 css */}
-        <div className={styled.app_wrap}>
-          <div className={styled.item}>아이템</div>
-          <div className={styled.item}>아이템</div>
-          <div className={styled.item}>아이템</div>
-          <div className={styled.item}>아이템</div>
-        </div>
+      <h1>HookRef - 이름 붙이기</h1>
+      <HookRef/>
+      <hr/>
+      
+      <h1>HookQ</h1>
+      <HookQ/>
+      <hr/>
 
-        {/* 모듈 css의 전역선택자 */}
-        <h3 className='title'>:global의 사용</h3>
-        <h3 className='content'>:global의 사용</h3>
-      </div> 
+      <h1>useReducer - 외부에서 state 관리</h1>
+      <HookReducer/>
+      <hr/>
+
+      <h1>useMemo - 렌더링 최적화</h1>
+      <HookMemo/>
+      <hr/>
+
+      <h1>useCallback - 렌더링 최적화</h1>
+      <HookCallback/>
+      <hr/>
+
     </>
   )
 }
 
-export default App;
+export default App

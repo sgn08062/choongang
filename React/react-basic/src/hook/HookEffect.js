@@ -11,9 +11,9 @@ function HookEffect(){
   // });
 
   // 첫번째 mount 이후에만 딱 한번 실행하려면, 두번째 매개변수 []을 넣어주면 된다.
-  // useEffect(()=>{
-  //   console.log(`렌더링 완료: ${name}, ${age}`);
-  // }, []);
+  useEffect(()=>{
+    console.log(`렌더링 완료: ${name}, ${age}`);
+  }, [name]);
 
   // 특정 state가 변경될 때마다 실행시키고 싶으면 [state, state...] 을 넣으면 된다,
   // useEffect(()=>{
